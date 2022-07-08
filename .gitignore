@@ -184,11 +184,6 @@ Dependencies/
 # https://github.com/johnno1962/injectionforxcode
 
 
-### SwiftPackageManager ###
-Packages
-xcuserdata
-*.xcodeproj
-
 
 ### SwiftPM ###
 
@@ -215,15 +210,7 @@ xcuserdata
 
 
 
-
 ## Gcc Patch
 /*.gcno
-
-### Xcode Patch ###
-*.xcodeproj/*
-!*.xcodeproj/project.pbxproj
-!*.xcodeproj/xcshareddata/
-!*.xcworkspace/contents.xcworkspacedata
-**/xcshareddata/WorkspaceSettings.xcsettings
 
 # End of https://www.toptal.com/developers/gitignore/api/sublimetext,visualstudiocode,xcode,macos,swift,swiftpm,swiftpackagemanager,objective-c
