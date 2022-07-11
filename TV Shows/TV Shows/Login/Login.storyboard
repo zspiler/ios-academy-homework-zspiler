@@ -25,7 +25,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oWl-5E-ch1">
-                                <rect key="frame" x="146" y="676" width="123" height="53"/>
+                                <rect key="frame" x="146" y="680" width="123" height="53"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <buttonConfiguration key="configuration" style="filled" title="Tap me!" cornerStyle="large">
                                     <fontDescription key="titleFontDescription" type="system" pointSize="19"/>

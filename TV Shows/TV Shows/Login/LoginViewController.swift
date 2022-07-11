@@ -7,24 +7,19 @@
 
 import UIKit
 
-
 class LoginViewController: UIViewController {
-    
     
     @IBOutlet weak var textLabel: UILabel!
     
-    var numOfTaps = 0;
+    private var numOfTaps = 0
 
-    
-    @IBAction func tapButton(_ sender: UIButton) {
-        numOfTaps += 1
+    override func viewDidLoad() {
+        super.viewDidLoad()
         textLabel.text = String(numOfTaps)
     }
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        // Do any additional setup after loading the view.
-        
+    @IBAction func tapButton(_ sender: UIButton) {
+        numOfTaps += 1
         textLabel.text = String(numOfTaps)
     }
 }
