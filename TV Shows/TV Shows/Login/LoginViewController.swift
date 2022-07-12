@@ -7,20 +7,35 @@
 
 import UIKit
 
-class LoginViewController: UIViewController {
+final class LoginViewController: UIViewController {
     
+    // MARK: - Outlets
+
     @IBOutlet weak var textLabel: UILabel!
+
+    // MARK: - Properties
     
     private var numOfTaps = 0
 
+    // MARK: - Lifecycle methods
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        textLabel.text = String(numOfTaps)
+        setUpUI()
     }
     
-    @IBAction func tapButton(_ sender: UIButton) {
+    // MARK: - Actions
+    
+    @IBAction func tapButton() {
         numOfTaps += 1
         textLabel.text = String(numOfTaps)
     }
+    
+    // MARK: - Helpers
+    
+    func setUpUI() {
+        textLabel.text = String(numOfTaps)
+    }
+
 }
 

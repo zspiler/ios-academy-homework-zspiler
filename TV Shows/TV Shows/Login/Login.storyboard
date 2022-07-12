@@ -31,8 +31,16 @@
                                     <fontDescription key="titleFontDescription" type="system" pointSize="19"/>
                                     <color key="baseBackgroundColor" red="0.46269738669999999" green="0.67059588429999994" blue="0.65097653870000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 </buttonConfiguration>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="EyD-rF-glD">
+                                <rect key="frame" x="146" y="680" width="123" height="53"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <buttonConfiguration key="configuration" style="filled" title="Tap me!" cornerStyle="large">
+                                    <fontDescription key="titleFontDescription" type="system" pointSize="19"/>
+                                    <color key="baseBackgroundColor" red="0.46269738669999999" green="0.67059588429999994" blue="0.65097653870000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </buttonConfiguration>
                                 <connections>
-                                    <action selector="tapButton:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="Xr9-fV-dzg"/>
+                                    <action selector="tapButton" destination="Y6W-OH-hqX" eventType="touchUpInside" id="N1A-ej-pW5"/>
                                 </connections>
                             </button>
                         </subviews>
