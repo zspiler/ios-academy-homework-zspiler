@@ -10,6 +10,9 @@
 		4261C4D32882B45D0068BC38 /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4261C4D22882B45D0068BC38 /* Colors.swift */; };
 		4261C4D628881D1E0068BC38 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4261C4D528881D1E0068BC38 /* HomeViewController.swift */; };
 		4261C4D828881D2F0068BC38 /* Home.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4261C4D728881D2F0068BC38 /* Home.storyboard */; };
+		4261C4DA288826680068BC38 /* AuthRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4261C4D9288826680068BC38 /* AuthRouter.swift */; };
+		4261C4DC288827AC0068BC38 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4261C4DB288827AC0068BC38 /* Constants.swift */; };
+		4261C4DE28882ABB0068BC38 /* ApiManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4261C4DD28882ABB0068BC38 /* ApiManager.swift */; };
 		42D309CA2875EE6300B03062 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42D309C92875EE6300B03062 /* AppDelegate.swift */; };
 		42D309CC2875EE6300B03062 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42D309CB2875EE6300B03062 /* SceneDelegate.swift */; };
 		42D309CE2875EE6300B03062 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42D309CD2875EE6300B03062 /* ViewController.swift */; };
@@ -26,6 +29,9 @@
 		4261C4D22882B45D0068BC38 /* Colors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
 		4261C4D528881D1E0068BC38 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		4261C4D728881D2F0068BC38 /* Home.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Home.storyboard; sourceTree = "<group>"; };
+		4261C4D9288826680068BC38 /* AuthRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthRouter.swift; sourceTree = "<group>"; };
+		4261C4DB288827AC0068BC38 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		4261C4DD28882ABB0068BC38 /* ApiManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiManager.swift; sourceTree = "<group>"; };
 		42D309C62875EE6300B03062 /* TV Shows.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "TV Shows.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		42D309C92875EE6300B03062 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		42D309CB2875EE6300B03062 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -59,6 +65,23 @@
 			path = Home;
 			sourceTree = "<group>";
 		};
+		4261C4DF28882DCD0068BC38 /* API */ = {
+			isa = PBXGroup;
+			children = (
+				4261C4E028882E030068BC38 /* Routers */,
+				4261C4DD28882ABB0068BC38 /* ApiManager.swift */,
+			);
+			path = API;
+			sourceTree = "<group>";
+		};
+		4261C4E028882E030068BC38 /* Routers */ = {
+			isa = PBXGroup;
+			children = (
+				4261C4D9288826680068BC38 /* AuthRouter.swift */,
+			);
+			path = Routers;
+			sourceTree = "<group>";
+		};
 		42D309BD2875EE6300B03062 = {
 			isa = PBXGroup;
 			children = (
@@ -80,6 +103,7 @@
 		42D309C82875EE6300B03062 /* TV Shows */ = {
 			isa = PBXGroup;
 			children = (
+				4261C4DF28882DCD0068BC38 /* API */,
 				4261C4D428881CF60068BC38 /* Home */,
 				42D309DD2878A8B300B03062 /* Login */,
 				42D309C92875EE6300B03062 /* AppDelegate.swift */,
@@ -88,6 +112,7 @@
 				42D309D22875EE6500B03062 /* Assets.xcassets */,
 				42D309D42875EE6500B03062 /* LaunchScreen.storyboard */,
 				42D309D72875EE6500B03062 /* Info.plist */,
+				4261C4DB288827AC0068BC38 /* Constants.swift */,
 			);
 			path = "TV Shows";
 			sourceTree = "<group>";
@@ -241,6 +266,9 @@
 				42D309CA2875EE6300B03062 /* AppDelegate.swift in Sources */,
 				42D309CC2875EE6300B03062 /* SceneDelegate.swift in Sources */,
 				4261C4D628881D1E0068BC38 /* HomeViewController.swift in Sources */,
+				4261C4DA288826680068BC38 /* AuthRouter.swift in Sources */,
+				4261C4DC288827AC0068BC38 /* Constants.swift in Sources */,
+				4261C4DE28882ABB0068BC38 /* ApiManager.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

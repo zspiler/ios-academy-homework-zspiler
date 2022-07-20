@@ -7,7 +7,7 @@
 
 import UIKit
 import MBProgressHUD
-import Alamofire
+
 
 final class LoginViewController: UIViewController {
     
@@ -49,19 +49,19 @@ final class LoginViewController: UIViewController {
     @IBAction func changePasswordInputText() {
         let password = passwordInput.text ?? ""
         showPasswordButton.isHidden = password.count == 0
-
+        
         updateLoginRegisterButtons()
     }
     
     @IBAction func tapLoginButton() {
         guard let email = emailInput.text, let password = passwordInput.text, !email.isEmpty && !password.isEmpty else { return }
-
+        
         loginUser(email: email, password: password)
     }
     
     @IBAction func tapRegisterButton() {
         guard let email = emailInput.text, let password = passwordInput.text, !email.isEmpty && !password.isEmpty else { return }
-
+        
         registerUser(email: email, password: password)
     }
     
@@ -96,7 +96,7 @@ final class LoginViewController: UIViewController {
         
         registerButton.setTitleColor(Colors.disabledRegisterButtonTitle, for: UIControl.State.disabled)
         registerButton.setTitleColor(Colors.enabledRegisterButtonTitle, for: UIControl.State.normal)
-
+        
         disableLoginRegisterButtons()
     }
     
@@ -125,18 +125,7 @@ final class LoginViewController: UIViewController {
     func registerUser(email: String, password: String) {
         MBProgressHUD.showAdded(to: self.view, animated: true)
         
-        let parameters: [String: String] = [
-            "email": email,
-            "password": password,
-            "password_confirmation": password
-        ]
-    
-        AF
-            .request(
-                "https://tv-shows.infinum.academy/users",
-                method: HTTPMethod.post,
-                parameters: parameters,
-                encoder: JSONParameterEncoder.default)
+        ApiManager.session.request(AuthRouter.register(user: AuthRouter.User(email: email, password: password)))
             .validate()
             .responseDecodable(of: UserResponse.self) { [weak self] response in
                 guard let self = self else { return }
@@ -148,25 +137,15 @@ final class LoginViewController: UIViewController {
                     self.user = userRoot.user
                     self.pushToHomeView()
                 case .failure(let error):
-                    print("Error creating user: \(error)")
+                    print("Error creating account: \(error)")
                 }
             }
     }
-        
+    
     func loginUser(email: String, password: String) {
         MBProgressHUD.showAdded(to: self.view, animated: true)
         
-        let parameters: [String: String] = [
-            "email": email,
-            "password": password
-        ]
-        
-        AF
-            .request(
-                "https://tv-shows.infinum.academy/users/sign_in",
-                method: HTTPMethod.post,
-                parameters: parameters,
-                encoder: JSONParameterEncoder.default)
+        ApiManager.session.request(AuthRouter.login(user: AuthRouter.User(email: email, password: password)))
             .validate()
             .responseDecodable(of: UserResponse.self) { [weak self] response in
                 guard let self = self else { return }
