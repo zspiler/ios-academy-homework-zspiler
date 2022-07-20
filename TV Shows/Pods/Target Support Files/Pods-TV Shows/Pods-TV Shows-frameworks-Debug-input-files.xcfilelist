@@ -1,2 +1,3 @@
 ${PODS_ROOT}/Target Support Files/Pods-TV Shows/Pods-TV Shows-frameworks.sh
+${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework
 ${BUILT_PRODUCTS_DIR}/MBProgressHUD/MBProgressHUD.framework

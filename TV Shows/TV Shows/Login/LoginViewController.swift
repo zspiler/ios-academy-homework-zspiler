@@ -6,6 +6,8 @@
 //
 
 import UIKit
+import MBProgressHUD
+import Alamofire
 
 final class LoginViewController: UIViewController {
     
@@ -17,6 +19,10 @@ final class LoginViewController: UIViewController {
     @IBOutlet private weak var loginButton: UIButton!
     @IBOutlet private weak var registerButton: UIButton!
     @IBOutlet private weak var showPasswordButton: UIButton!
+    
+    // MARK: - Properties
+    
+    private var user: User?
     
     // MARK: - Lifecycle methods
     
@@ -45,6 +51,18 @@ final class LoginViewController: UIViewController {
         showPasswordButton.isHidden = password.count == 0
 
         updateLoginRegisterButtons()
+    }
+    
+    @IBAction func tapLoginButton() {
+        guard let email = emailInput.text, let password = passwordInput.text, !email.isEmpty && !password.isEmpty else { return }
+
+        loginUser(email: email, password: password)
+    }
+    
+    @IBAction func tapRegisterButton() {
+        guard let email = emailInput.text, let password = passwordInput.text, !email.isEmpty && !password.isEmpty else { return }
+
+        registerUser(email: email, password: password)
     }
     
     // MARK: - Helpers
@@ -102,5 +120,88 @@ final class LoginViewController: UIViewController {
         loginButton.isEnabled = true
         registerButton.isEnabled = true
         loginButton.backgroundColor = Colors.enabledLoginButtonBackground
+    }
+    
+    func registerUser(email: String, password: String) {
+        MBProgressHUD.showAdded(to: self.view, animated: true)
+        
+        let parameters: [String: String] = [
+            "email": email,
+            "password": password,
+            "password_confirmation": password
+        ]
+    
+        AF
+            .request(
+                "https://tv-shows.infinum.academy/users",
+                method: HTTPMethod.post,
+                parameters: parameters,
+                encoder: JSONParameterEncoder.default)
+            .validate()
+            .responseDecodable(of: UserResponse.self) { [weak self] response in
+                guard let self = self else { return }
+                let responseHeaders = response.response?.headers.dictionary
+                MBProgressHUD.hide(for: self.view, animated: true)
+                
+                switch response.result {
+                case .success(let userRoot):
+                    self.user = userRoot.user
+                    self.pushToHomeView()
+                case .failure(let error):
+                    print("Error creating user: \(error)")
+                }
+            }
+    }
+        
+    func loginUser(email: String, password: String) {
+        MBProgressHUD.showAdded(to: self.view, animated: true)
+        
+        let parameters: [String: String] = [
+            "email": email,
+            "password": password
+        ]
+        
+        AF
+            .request(
+                "https://tv-shows.infinum.academy/users/sign_in",
+                method: HTTPMethod.post,
+                parameters: parameters,
+                encoder: JSONParameterEncoder.default)
+            .validate()
+            .responseDecodable(of: UserResponse.self) { [weak self] response in
+                guard let self = self else { return }
+                let responseHeaders = response.response?.headers.dictionary
+                MBProgressHUD.hide(for: self.view, animated: true)
+                
+                switch response.result {
+                case .success(let userRoot):
+                    self.user = userRoot.user
+                    self.pushToHomeView()
+                case .failure(let error):
+                    print("Error signing in: \(error)")
+                }
+            }
+    }
+    
+    func pushToHomeView() {
+        let storyboard = UIStoryboard(name: "Home", bundle: nil)
+        let homeViewController = storyboard.instantiateViewController(withIdentifier: "HomeViewController")
+        navigationController?.pushViewController(homeViewController, animated: true)
+    }
+}
+
+private struct UserResponse: Decodable {
+    let user: User
+}
+
+private struct User: Codable {
+    let id: String
+    let email: String
+    let imageUrl: String?
+    
+    enum CodingKeys: String, CodingKey {
+        case email
+        case id
+        case imageUrl = "image_url"
     }
 }
