@@ -11,17 +11,12 @@ final class LoginViewController: UIViewController {
     
     // MARK: - Outlets
     
-    @IBOutlet weak var emailInput: UITextField!
-    @IBOutlet weak var passwordInput: UITextField!
-    @IBOutlet weak var rememberMeCheckbox: UIButton!
-    @IBOutlet weak var loginButton: UIButton!
-    @IBOutlet weak var registerButton: UIButton!
-    @IBOutlet weak var showPasswordButton: UIButton!
-    
-    // MARK: - Properties
-    
-    var emailText = ""
-    var passwordText = ""
+    @IBOutlet private weak var emailInput: UITextField!
+    @IBOutlet private weak var passwordInput: UITextField!
+    @IBOutlet private weak var rememberMeCheckbox: UIButton!
+    @IBOutlet private weak var loginButton: UIButton!
+    @IBOutlet private weak var registerButton: UIButton!
+    @IBOutlet private weak var showPasswordButton: UIButton!
     
     // MARK: - Lifecycle methods
     
@@ -38,19 +33,17 @@ final class LoginViewController: UIViewController {
     }
     
     @IBAction func tapRememberMeCheckbox() {
-        rememberMeCheckbox.isSelected = !rememberMeCheckbox.isSelected
+        rememberMeCheckbox.isSelected.toggle()
     }
     
-    @IBAction func changeEmailInputText(_ sender: UITextField) {
-        emailText = sender.text ?? ""
-        
+    @IBAction func changeEmailInputText() {
         updateLoginRegisterButtons()
     }
     
-    @IBAction func changePasswordInputText(_ sender: UITextField) {
-        passwordText = sender.text ?? ""
-        showPasswordButton.isHidden = passwordText.count == 0
-        
+    @IBAction func changePasswordInputText() {
+        let password = passwordInput.text ?? ""
+        showPasswordButton.isHidden = password.count == 0
+
         updateLoginRegisterButtons()
     }
     
@@ -64,7 +57,6 @@ final class LoginViewController: UIViewController {
         
         showPasswordButton.setImage(UIImage(named: "ic-visible"), for: UIControl.State.normal)
         showPasswordButton.setImage(UIImage(named: "ic-invisible"), for: UIControl.State.selected)
-        
         
         let placeholderFont = UIFont.systemFont(ofSize: 17, weight: .light)
         
@@ -81,12 +73,19 @@ final class LoginViewController: UIViewController {
         )
         
         
-        disableLoginRegisterButtons()
+        loginButton.setTitleColor(Colors.disabledLoginButtonTitle, for: UIControl.State.disabled)
+        loginButton.setTitleColor(Colors.enabledLoginButtonTitle, for: UIControl.State.normal)
         
+        registerButton.setTitleColor(Colors.disabledRegisterButtonTitle, for: UIControl.State.disabled)
+        registerButton.setTitleColor(Colors.enabledRegisterButtonTitle, for: UIControl.State.normal)
+
+        disableLoginRegisterButtons()
     }
     
     func updateLoginRegisterButtons() {
-        if emailText.count > 0 && passwordText.count > 0 {
+        let email = emailInput.text ?? ""
+        let password = passwordInput.text ?? ""
+        if email.count > 0 && password.count > 0 {
             enableLoginRegisterButtons()
         } else {
             disableLoginRegisterButtons()
@@ -94,14 +93,14 @@ final class LoginViewController: UIViewController {
     }
     
     func disableLoginRegisterButtons() {
-        loginButton.tintColor = Colors.disabledLoginButtonTitle
+        loginButton.isEnabled = false
+        registerButton.isEnabled = false
         loginButton.backgroundColor = Colors.disabledLoginButtonBackground
-        registerButton.tintColor = Colors.disabledRegisterButtonTitle
     }
     
     func enableLoginRegisterButtons() {
-        loginButton.tintColor = Colors.enabledLoginButtonTitle
+        loginButton.isEnabled = true
+        registerButton.isEnabled = true
         loginButton.backgroundColor = Colors.enabledLoginButtonBackground
-        registerButton.tintColor = Colors.enabledRegisterButtonTitle
     }
 }
