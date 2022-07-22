@@ -34,8 +34,8 @@ final class LoginViewController: UIViewController {
     // MARK: - Actions
     
     @IBAction func tapShowPasswordButton() {
-        showPasswordButton.isSelected = !showPasswordButton.isSelected
-        passwordInput.isSecureTextEntry = !showPasswordButton.isSelected
+        showPasswordButton.isSelected.toggle()
+        passwordInput.isSecureTextEntry.toggle()
     }
     
     @IBAction func tapRememberMeCheckbox() {
@@ -68,34 +68,41 @@ final class LoginViewController: UIViewController {
     // MARK: - Helpers
     
     func setUpUI() {
-        loginButton.layer.cornerRadius = 24
-        
-        rememberMeCheckbox.setImage(UIImage(named: "ic-checkbox-unselected"), for: UIControl.State.normal)
-        rememberMeCheckbox.setImage(UIImage(named: "ic-checkbox-selected"), for: UIControl.State.selected)
-        
-        showPasswordButton.setImage(UIImage(named: "ic-visible"), for: UIControl.State.normal)
-        showPasswordButton.setImage(UIImage(named: "ic-invisible"), for: UIControl.State.selected)
-        
+        setUpButtons()
+        setUpTextFields()
+    }
+    
+    func setUpTextFields() {
         let placeholderFont = UIFont.systemFont(ofSize: 17, weight: .light)
         
         emailInput.attributedPlaceholder = NSAttributedString(
             string: "Email",
-            attributes: [NSAttributedString.Key.foregroundColor: UIColor.white.withAlphaComponent(0.7),
-                         NSAttributedString.Key.font: placeholderFont
-                        ]
+            attributes: [.foregroundColor: UIColor.white.withAlphaComponent(0.7),
+                         .font: placeholderFont
+            ]
         )
         
         passwordInput.attributedPlaceholder = NSAttributedString(
             string: "Password",
-            attributes: [NSAttributedString.Key.foregroundColor: UIColor.white.withAlphaComponent(0.7), NSAttributedString.Key.font: placeholderFont]
+            attributes: [.foregroundColor: UIColor.white.withAlphaComponent(0.7),
+                         .font: placeholderFont
+            ]
         )
+    }
+    
+    func setUpButtons() {
+        rememberMeCheckbox.setImage(UIImage(named: "ic-checkbox-unselected"), for: .normal)
+        rememberMeCheckbox.setImage(UIImage(named: "ic-checkbox-selected"), for: .selected)
         
+        showPasswordButton.setImage(UIImage(named: "ic-visible"), for: .normal)
+        showPasswordButton.setImage(UIImage(named: "ic-invisible"), for: .selected)
         
-        loginButton.setTitleColor(Colors.disabledLoginButtonTitle, for: UIControl.State.disabled)
-        loginButton.setTitleColor(Colors.enabledLoginButtonTitle, for: UIControl.State.normal)
+        loginButton.layer.cornerRadius = 24
+        loginButton.setTitleColor(UIColor.Button.secondary40, for: .disabled)
+        loginButton.setTitleColor(UIColor.Button.primary, for: .normal)
         
-        registerButton.setTitleColor(Colors.disabledRegisterButtonTitle, for: UIControl.State.disabled)
-        registerButton.setTitleColor(Colors.enabledRegisterButtonTitle, for: UIControl.State.normal)
+        registerButton.setTitleColor(.Button.secondary40, for: .disabled)
+        registerButton.setTitleColor(.Button.secondary, for: .normal)
         
         disableLoginRegisterButtons()
     }
@@ -113,13 +120,13 @@ final class LoginViewController: UIViewController {
     func disableLoginRegisterButtons() {
         loginButton.isEnabled = false
         registerButton.isEnabled = false
-        loginButton.backgroundColor = Colors.disabledLoginButtonBackground
+        loginButton.backgroundColor = .Button.secondary30
     }
     
     func enableLoginRegisterButtons() {
         loginButton.isEnabled = true
         registerButton.isEnabled = true
-        loginButton.backgroundColor = Colors.enabledLoginButtonBackground
+        loginButton.backgroundColor = .Button.secondary
     }
     
     func registerUser(email: String, password: String) {

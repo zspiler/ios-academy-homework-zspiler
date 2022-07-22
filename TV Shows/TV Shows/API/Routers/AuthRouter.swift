@@ -24,9 +24,7 @@ enum AuthRouter: URLRequestConvertible {
     
     var method: HTTPMethod {
         switch self {
-        case .login:
-            return .post
-        case .register:
+        case .login, .register:
             return .post
         }
     }
@@ -47,15 +45,21 @@ enum AuthRouter: URLRequestConvertible {
         }
     }
     
+    var encodingType: ParameterEncoding {
+        switch self {
+        case .login, .register:
+            return JSONEncoding.default
+        }
+    }
+    
     func asURLRequest() throws -> URLRequest {
-       
         let url = try URL(string: Constants.apiBaseUrl.asURL()
                                                   .appendingPathComponent(path)
                                                   .absoluteString.removingPercentEncoding!)
         var request = URLRequest.init(url: url!)
         request.httpMethod = method.rawValue
         request.timeoutInterval = TimeInterval(10*1000)
-        return try URLEncoding.default.encode(request,with: parameters)
+        return try encodingType.encode(request,with: parameters)
     }
     
     struct User {
