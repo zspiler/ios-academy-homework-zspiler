@@ -9,6 +9,7 @@ import Foundation
 
 struct ShowsResponse: Decodable {
     let shows: [Show]
+    let meta: Metadata
 }
 
 struct Show: Codable {
@@ -29,11 +30,13 @@ struct Show: Codable {
     }
 }
 
-//{
-//"id": "12",
-//"average_rating": null,
-//"description": null,
-//"image_url": "memory://dc9b3b6310caf31d0254e517fadb5762",
-//"no_of_reviews": 0,
-//"title": "Tv Show 12"
-//},
+struct Metadata: Codable {
+    let pagination: PaginationMetadata
+}
+
+struct PaginationMetadata: Codable {
+    let count: Int
+    let page: Int
+    let items: Int
+    let pages: Int
+}

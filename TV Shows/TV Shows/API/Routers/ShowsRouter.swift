@@ -9,8 +9,8 @@ import Alamofire
 
 enum ShowsRouter: URLRequestConvertible {
     
-    case getAll(authInfo: AuthInfo)
-
+    case getAll(authInfo: AuthInfo, pageNumber: Int)
+        
     var path: String {
         let endpoint = "shows"
         switch self {
@@ -27,15 +27,16 @@ enum ShowsRouter: URLRequestConvertible {
     }
     
     var parameters: Parameters? {
+        let pageSize = 30
         switch self {
-        case .getAll:
-            return nil
+        case .getAll(_, let pageNumber):
+            return ["page": String(pageNumber), "items": String(pageSize)]
         }
     }
     
     var headers: HTTPHeaders {
         switch self {
-        case .getAll(let authInfo):
+        case .getAll(let authInfo, _):
             return HTTPHeaders(authInfo.headers)
         }
     }
@@ -43,7 +44,7 @@ enum ShowsRouter: URLRequestConvertible {
     var encodingType: ParameterEncoding {
         switch self {
         case .getAll:
-            return JSONEncoding.default
+            return URLEncoding.default
         }
     }
     

@@ -19,6 +19,8 @@ class HomeViewController: UIViewController {
     var user: User?
     var authInfo: AuthInfo?
     var shows: [Show] = []
+    var page = 1
+    var numberOfPages: Int?
     
     // MARK: - Lifecycle methods
     
@@ -38,7 +40,7 @@ class HomeViewController: UIViewController {
         guard let authInfo = authInfo else { return }
         MBProgressHUD.showAdded(to: self.view, animated: true)
         
-        ApiManager.session.request(ShowsRouter.getAll(authInfo: authInfo))
+        ApiManager.session.request(ShowsRouter.getAll(authInfo: authInfo, pageNumber: page))
             .validate()
             .responseDecodable(of: ShowsResponse.self) { [weak self] response in
                 guard let self = self else { return }
@@ -46,9 +48,12 @@ class HomeViewController: UIViewController {
                 
                 switch response.result {
                 case .success(let showsResponse):
-                    self.shows = showsResponse.shows
+                    self.shows.append(contentsOf: showsResponse.shows)
+                    self.numberOfPages = self.numberOfPages ?? showsResponse.meta.pagination.pages
+                    self.page = showsResponse.meta.pagination.page + 1
                     self.tableView.reloadData()
-                case .failure(_):
+                case .failure(let error):
+                    print(error)
                     Alert.displayErrorMessage(message: "Failed to fetch shows.", from: self)
                 }
             }
@@ -77,4 +82,12 @@ extension HomeViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
     }
+    
+    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        guard let numberOfPages = numberOfPages else { return }
+        if indexPath.row == shows.count - 1 && page - 1 < numberOfPages {
+            fetchShows()
+        }
+    }
+    
 }
