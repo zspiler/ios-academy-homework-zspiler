@@ -20,10 +20,6 @@ final class LoginViewController: UIViewController {
     @IBOutlet private weak var registerButton: UIButton!
     @IBOutlet private weak var showPasswordButton: UIButton!
     
-    // MARK: - Properties
-    
-    private var user: User?
-    
     // MARK: - Lifecycle methods
     
     override func viewDidLoad() {
@@ -136,15 +132,14 @@ final class LoginViewController: UIViewController {
             .validate()
             .responseDecodable(of: UserResponse.self) { [weak self] response in
                 guard let self = self else { return }
-                let responseHeaders = response.response?.headers.dictionary
                 MBProgressHUD.hide(for: self.view, animated: true)
                 
                 switch response.result {
-                case .success(let userRoot):
-                    self.user = userRoot.user
-                    self.pushToHomeView()
-                case .failure(let error):
-                    print("Error creating account: \(error)")
+                case .success(let userResponse):
+                    let headers = response.response?.headers.dictionary ?? [:]
+                    self.handleSuccesfulLogin(for: userResponse.user, headers: headers)
+                case .failure(_):
+                    Alert.displayErrorMessage(message: "Failed to create new account.\nPlease try again.", from: self)
                 }
             }
     }
@@ -156,38 +151,32 @@ final class LoginViewController: UIViewController {
             .validate()
             .responseDecodable(of: UserResponse.self) { [weak self] response in
                 guard let self = self else { return }
-                let responseHeaders = response.response?.headers.dictionary
                 MBProgressHUD.hide(for: self.view, animated: true)
                 
                 switch response.result {
-                case .success(let userRoot):
-                    self.user = userRoot.user
-                    self.pushToHomeView()
-                case .failure(let error):
-                    print("Error signing in: \(error)")
+                case .success(let userResponse):
+                    let headers = response.response?.headers.dictionary ?? [:]
+                    self.handleSuccesfulLogin(for: userResponse.user, headers: headers)
+                case .failure(_):
+                    Alert.displayErrorMessage(message: "Failed to sign you in.\nPlease try again.", from: self)
                 }
             }
     }
     
-    func pushToHomeView() {
+    func pushToHomeView(with user: User, authInfo: AuthInfo) {
         let storyboard = UIStoryboard(name: "Home", bundle: nil)
-        let homeViewController = storyboard.instantiateViewController(withIdentifier: "HomeViewController")
+        let homeViewController = storyboard.instantiateViewController(withIdentifier: "HomeViewController") as! HomeViewController
+        homeViewController.user = user
+        homeViewController.authInfo = authInfo
         navigationController?.pushViewController(homeViewController, animated: true)
     }
-}
-
-private struct UserResponse: Decodable {
-    let user: User
-}
-
-private struct User: Codable {
-    let id: String
-    let email: String
-    let imageUrl: String?
     
-    enum CodingKeys: String, CodingKey {
-        case email
-        case id
-        case imageUrl = "image_url"
+    func handleSuccesfulLogin(for user: User, headers: [String: String]) {
+        guard let authInfo = try? AuthInfo(headers: headers) else {
+            Alert.displayErrorMessage(message: "Failed to sign you in.\nPlease try again.", from: self)
+            return
+        }
+        self.pushToHomeView(with: user, authInfo: authInfo)
     }
+    
 }
