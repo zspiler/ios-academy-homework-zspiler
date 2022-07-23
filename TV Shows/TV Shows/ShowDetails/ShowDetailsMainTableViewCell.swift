@@ -10,4 +10,7 @@ import UIKit
 class ShowDetailsMainTableViewCell: UITableViewCell {
 
     @IBOutlet weak var showDescriptionLabel: UILabel!
+ 
+    
+    
 }

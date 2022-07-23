@@ -27,13 +27,30 @@
                                 <rect key="frame" x="20" y="115" width="374" height="727"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="showDetailsMainCell" id="VGn-Q1-viF" userLabel="Main Table View Cell" customClass="ShowDetailsMainTableViewCell" customModule="TV_Shows" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="44.5" width="374" height="43.5"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="showDetailsMainCell" id="vJl-Xh-7sO" userLabel="Show Details Table View Cell" customClass="ShowDetailsMainTableViewCell" customModule="TV_Shows" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="44.5" width="374" height="22.5"/>
                                         <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="VGn-Q1-viF" id="ITN-5K-yuX" customClass="ShowDetailsMainTableViewCell" customModule="TV_Shows" customModuleProvider="target">
-                                            <rect key="frame" x="0.0" y="0.0" width="374" height="43.5"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="vJl-Xh-7sO" id="8Rq-sm-8RD">
+                                            <rect key="frame" x="0.0" y="0.0" width="374" height="22.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5gL-Av-Le7" userLabel="Show Description Label">
+                                                    <rect key="frame" x="20" y="11" width="334" height="0.5"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="5gL-Av-Le7" firstAttribute="leading" secondItem="8Rq-sm-8RD" secondAttribute="leadingMargin" id="R12-Mz-sNA"/>
+                                                <constraint firstAttribute="bottomMargin" secondItem="5gL-Av-Le7" secondAttribute="bottom" id="bIj-65-Nbq"/>
+                                                <constraint firstItem="5gL-Av-Le7" firstAttribute="top" secondItem="8Rq-sm-8RD" secondAttribute="topMargin" id="eH0-Yf-oGN"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="5gL-Av-Le7" secondAttribute="trailing" id="ho2-bS-knL"/>
+                                            </constraints>
                                         </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="showDescriptionLabel" destination="5gL-Av-Le7" id="euF-g7-Zcn"/>
+                                        </connections>
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
