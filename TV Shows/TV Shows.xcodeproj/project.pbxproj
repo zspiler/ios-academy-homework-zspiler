@@ -16,6 +16,9 @@
 		4261C4E4288B1A810068BC38 /* Colors.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4261C4E3288B1A810068BC38 /* Colors.xcassets */; };
 		4261C4E6288BEF010068BC38 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4261C4E5288BEF010068BC38 /* User.swift */; };
 		4261C4E8288BF8320068BC38 /* Alert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4261C4E7288BF8320068BC38 /* Alert.swift */; };
+		4261C4EA288BFB860068BC38 /* ShowsRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4261C4E9288BFB860068BC38 /* ShowsRouter.swift */; };
+		4261C4EC288BFE160068BC38 /* Shows.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4261C4EB288BFE160068BC38 /* Shows.swift */; };
+		4261C4EE288C09680068BC38 /* ShowsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4261C4ED288C09680068BC38 /* ShowsTableViewCell.swift */; };
 		42D309CA2875EE6300B03062 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42D309C92875EE6300B03062 /* AppDelegate.swift */; };
 		42D309CC2875EE6300B03062 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42D309CB2875EE6300B03062 /* SceneDelegate.swift */; };
 		42D309CE2875EE6300B03062 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42D309CD2875EE6300B03062 /* ViewController.swift */; };
@@ -38,6 +41,9 @@
 		4261C4E3288B1A810068BC38 /* Colors.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Colors.xcassets; sourceTree = "<group>"; };
 		4261C4E5288BEF010068BC38 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		4261C4E7288BF8320068BC38 /* Alert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Alert.swift; sourceTree = "<group>"; };
+		4261C4E9288BFB860068BC38 /* ShowsRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowsRouter.swift; sourceTree = "<group>"; };
+		4261C4EB288BFE160068BC38 /* Shows.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Shows.swift; sourceTree = "<group>"; };
+		4261C4ED288C09680068BC38 /* ShowsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowsTableViewCell.swift; sourceTree = "<group>"; };
 		42D309C62875EE6300B03062 /* TV Shows.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "TV Shows.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		42D309C92875EE6300B03062 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		42D309CB2875EE6300B03062 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -67,6 +73,8 @@
 			children = (
 				4261C4D528881D1E0068BC38 /* HomeViewController.swift */,
 				4261C4D728881D2F0068BC38 /* Home.storyboard */,
+				4261C4EB288BFE160068BC38 /* Shows.swift */,
+				4261C4ED288C09680068BC38 /* ShowsTableViewCell.swift */,
 			);
 			path = Home;
 			sourceTree = "<group>";
@@ -84,6 +92,7 @@
 			isa = PBXGroup;
 			children = (
 				4261C4D9288826680068BC38 /* AuthRouter.swift */,
+				4261C4E9288BFB860068BC38 /* ShowsRouter.swift */,
 			);
 			path = Routers;
 			sourceTree = "<group>";
@@ -271,8 +280,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				42D309E12878A8DB00B03062 /* LoginViewController.swift in Sources */,
+				4261C4EA288BFB860068BC38 /* ShowsRouter.swift in Sources */,
 				4261C4D32882B45D0068BC38 /* Colors.swift in Sources */,
 				42D309CE2875EE6300B03062 /* ViewController.swift in Sources */,
+				4261C4EE288C09680068BC38 /* ShowsTableViewCell.swift in Sources */,
 				42D309CA2875EE6300B03062 /* AppDelegate.swift in Sources */,
 				42D309CC2875EE6300B03062 /* SceneDelegate.swift in Sources */,
 				4261C4D628881D1E0068BC38 /* HomeViewController.swift in Sources */,
@@ -281,6 +292,7 @@
 				4261C4E8288BF8320068BC38 /* Alert.swift in Sources */,
 				4261C4E6288BEF010068BC38 /* User.swift in Sources */,
 				4261C4DE28882ABB0068BC38 /* ApiManager.swift in Sources */,
+				4261C4EC288BFE160068BC38 /* Shows.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
