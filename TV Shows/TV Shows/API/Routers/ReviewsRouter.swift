@@ -10,11 +10,14 @@ import Alamofire
 enum ReviewsRouter: URLRequestConvertible {
     
     case getAll(authInfo: AuthInfo, showId: String, pageNumber: Int)
+    case create(authInfo: AuthInfo, review: NewReview)
         
     var path: String {
         switch self {
         case .getAll(_, let showId, _):
             return "shows/\(showId)/reviews"
+        case .create:
+            return "reviews"
         }
     }
     
@@ -22,21 +25,29 @@ enum ReviewsRouter: URLRequestConvertible {
         switch self {
         case .getAll:
             return .get
+        case .create:
+            return .post
         }
     }
     
     var parameters: Parameters? {
         let pageSize = 30
         switch self {
-        case .getAll(_, let pageNumber, _):
+        case .getAll(_, _, let pageNumber):
             return ["page": String(pageNumber), "items": String(pageSize)]
+        case .create(_, let review):
+            return [
+                "rating" : review.rating,
+                "comment" : review.comment,
+                "show_id" : review.showId
+            ]
         }
     }
     
     
     var headers: HTTPHeaders {
         switch self {
-        case .getAll(let authInfo, _, _):
+        case .getAll(let authInfo, _, _), .create(let authInfo, _):
             return HTTPHeaders(authInfo.headers)
         }
     }
@@ -45,6 +56,8 @@ enum ReviewsRouter: URLRequestConvertible {
         switch self {
         case .getAll:
             return URLEncoding.default
+        case .create:
+            return JSONEncoding.default
         }
     }
     
@@ -56,7 +69,13 @@ enum ReviewsRouter: URLRequestConvertible {
         request.httpMethod = method.rawValue
         request.timeoutInterval = TimeInterval(10*1000)
         request.headers = headers
-        return try encodingType.encode(request,with: parameters)
+        return try encodingType.encode(request, with: parameters)
     }
+    
+}
 
+struct NewReview {
+    let rating: Int
+    let showId: Int
+    let comment: String
 }

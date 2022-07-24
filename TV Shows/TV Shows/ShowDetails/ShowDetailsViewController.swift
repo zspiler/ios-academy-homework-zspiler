@@ -33,6 +33,12 @@ class ShowDetailsViewController: UIViewController {
         setUpTableView()
     }
     
+    // MARK: - Actions
+    
+    @IBAction func tapWriteReviewButton() {
+        presentWriteReviewScreen()
+    }
+    
     // MARK: - Helpers
     
     func setUpUI() {
@@ -48,7 +54,7 @@ class ShowDetailsViewController: UIViewController {
     func fetchReviews() {
         guard let authInfo = authInfo else { return }
         MBProgressHUD.showAdded(to: self.view, animated: true)
-        
+
         ApiManager.session.request(ReviewsRouter.getAll(authInfo: authInfo, showId: show!.id, pageNumber: page))
             .validate()
             .responseDecodable(of: ReviewsResponse.self) { [weak self] response in
@@ -57,22 +63,27 @@ class ShowDetailsViewController: UIViewController {
                 
                 switch response.result {
                 case .success(let reviewsResponse):
-                    
-//                    print("PAGINATION: ")
-//                    print(reviewsResponse.meta.pagination)
-                    
                     self.reviews.append(contentsOf: reviewsResponse.reviews)
                     self.numberOfPages = self.numberOfPages ?? reviewsResponse.meta.pagination.pages
                     self.page = reviewsResponse.meta.pagination.page + 1
                     self.tableView.reloadData()
-                case .failure:
+                case .failure(let error):
+                    print(error)
                     Alert.displayErrorMessage(message: "Failed to fetch reviews.", from: self)
                 }
             }
     }
+    
+    func presentWriteReviewScreen() {
+        let storyboard = UIStoryboard(name: "WriteReview", bundle: nil)
+        let writeReviewController = storyboard.instantiateViewController(withIdentifier: "WriteReviewViewController") as! WriteReviewViewController
+        writeReviewController.showId = show!.id
+        writeReviewController.authInfo = authInfo!
+
+        let navigationController = UINavigationController(rootViewController: writeReviewController)
+        present(navigationController, animated: true)
+    }
 }
-
-
 
 extension ShowDetailsViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -104,9 +115,6 @@ extension ShowDetailsViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
         guard let numberOfPages = numberOfPages else { return }
         let reviewIndex = indexPath.row + 1
-        
-//        print("num of pages: \(numberOfPages), reviewIndex: \(reviewIndex), page: \(page), r.count: \(reviews.count)")
-//
         if reviewIndex == reviews.count - 1 && page - 1 < numberOfPages {
             fetchReviews()
         }

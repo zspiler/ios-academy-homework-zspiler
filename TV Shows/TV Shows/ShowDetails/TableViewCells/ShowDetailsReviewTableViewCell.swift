@@ -14,6 +14,14 @@ class ShowDetailsReviewTableViewCell: UITableViewCell {
     @IBOutlet private weak var emailLabel: UILabel!
     @IBOutlet private weak var profilePictureImageView: UIImageView!
     @IBOutlet private weak var commentLabel: UILabel!
+    @IBOutlet private weak var ratingStarsStackView: UIStackView!
+    
+    // MARK: - Lifecycle
+    
+    override func awakeFromNib() {
+        super.awakeFromNib()
+        setUpUI()
+    }
 }
 
 
@@ -22,15 +30,31 @@ class ShowDetailsReviewTableViewCell: UITableViewCell {
 extension ShowDetailsReviewTableViewCell {
 
     func configure(with review: Review) {
-        self.isUserInteractionEnabled = false
         profilePictureImageView.image = UIImage(named: "ic-profile-placeholder")
-
-        profilePictureImageView.layer.cornerRadius = profilePictureImageView.frame.width / 2
-        profilePictureImageView.layer.masksToBounds = true
         
         commentLabel.text = review.comment
         emailLabel.text = review.user.email
         
+        configureRatingStarIcons(with: review)
+    }
+    
+    private func configureRatingStarIcons(with review: Review) {
+        let starIcons = ratingStarsStackView.arrangedSubviews as! [UIImageView]
+        for (index, element) in starIcons.enumerated() {
+            if review.rating < index + 1 {
+                element.image = UIImage(named: "ic-star-deselected")
+            }
+        }
+    }
+}
+
+private extension ShowDetailsReviewTableViewCell {
+
+    func setUpUI() {
+        self.isUserInteractionEnabled = false
+        
+        profilePictureImageView.layer.cornerRadius = profilePictureImageView.frame.width / 2
+        profilePictureImageView.layer.masksToBounds = true
     }
 }
 

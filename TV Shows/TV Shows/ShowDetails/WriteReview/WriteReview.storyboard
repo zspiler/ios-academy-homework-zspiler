@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="20037" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="20020"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Write Review View Controller-->
+        <scene sceneID="s0d-6b-0kx">
+            <objects>
+                <viewController storyboardIdentifier="WriteReviewViewController" id="Y6W-OH-hqX" customClass="WriteReviewViewController" customModule="TV_Shows" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="5EZ-qb-Rvc">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="v3G-hF-B7A" customClass="RatingView" customModule="TV_Shows" customModuleProvider="target">
+                                <rect key="frame" x="10" y="103" width="394" height="75"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="75" id="Ukp-vt-Lq1"/>
+                                </constraints>
+                            </view>
+                            <label opaque="NO" userInteractionEnabled="NO" alpha="0.5" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Rating" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Lk8-Wf-lRy" userLabel="Rating Label">
+                                <rect key="frame" x="20" y="74" width="49.5" height="19"/>
+                                <fontDescription key="fontDescription" name="ArialMT" family="Arial" pointSize="17"/>
+                                <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" alpha="0.5" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Comment" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FOo-Sl-DJR" userLabel="Comment Label">
+                                <rect key="frame" x="20" y="208" width="74" height="19"/>
+                                <fontDescription key="fontDescription" name="ArialMT" family="Arial" pointSize="17"/>
+                                <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="Enter your comment here..." textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="UCO-Tr-XBV" userLabel="Comment Text View">
+                                <rect key="frame" x="20" y="243" width="374" height="200"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="200" id="MyO-Gd-qdS"/>
+                                </constraints>
+                                <color key="textColor" systemColor="labelColor"/>
+                                <fontDescription key="fontDescription" name="ArialMT" family="Arial" pointSize="17"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="f8K-DR-KKC">
+                                <rect key="frame" x="20" y="473" width="374" height="48"/>
+                                <color key="backgroundColor" name="primary"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="48" id="ZRg-AW-yr7"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="Arial-BoldMT" family="Arial" pointSize="17"/>
+                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                <state key="normal" title="Submit"/>
+                                <connections>
+                                    <action selector="tapSubmitButton" destination="Y6W-OH-hqX" eventType="touchUpInside" id="QTJ-Rt-4d4"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="vDu-zF-Fre"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="f8K-DR-KKC" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" constant="20" id="0bK-4M-g9V"/>
+                            <constraint firstItem="FOo-Sl-DJR" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" constant="20" id="1s5-V1-KUi"/>
+                            <constraint firstItem="UCO-Tr-XBV" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" constant="20" id="4Pe-dj-Vn8"/>
+                            <constraint firstItem="FOo-Sl-DJR" firstAttribute="top" secondItem="v3G-hF-B7A" secondAttribute="bottom" constant="30" id="4jU-Jl-nTN"/>
+                            <constraint firstItem="f8K-DR-KKC" firstAttribute="top" secondItem="UCO-Tr-XBV" secondAttribute="bottom" constant="30" id="92N-ys-vry"/>
+                            <constraint firstItem="v3G-hF-B7A" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" constant="10" id="Mhq-EI-c79"/>
+                            <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="f8K-DR-KKC" secondAttribute="trailing" constant="20" id="QGC-8m-3IF"/>
+                            <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="UCO-Tr-XBV" secondAttribute="trailing" constant="20" id="R62-yj-Q47"/>
+                            <constraint firstItem="v3G-hF-B7A" firstAttribute="top" secondItem="Lk8-Wf-lRy" secondAttribute="top" constant="29" id="Rw5-yh-nQ0"/>
+                            <constraint firstItem="Lk8-Wf-lRy" firstAttribute="top" secondItem="vDu-zF-Fre" secondAttribute="top" constant="30" id="atd-hd-rVo"/>
+                            <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="v3G-hF-B7A" secondAttribute="trailing" constant="10" id="emi-fZ-XwC"/>
+                            <constraint firstItem="UCO-Tr-XBV" firstAttribute="top" secondItem="FOo-Sl-DJR" secondAttribute="bottom" constant="16" id="fui-Yp-CwS"/>
+                            <constraint firstItem="Lk8-Wf-lRy" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" constant="20" id="jL2-64-MXD"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="i9g-Mp-oNO"/>
+                    <connections>
+                        <outlet property="commentTextView" destination="UCO-Tr-XBV" id="mFb-6n-bJ3"/>
+                        <outlet property="ratingView" destination="v3G-hF-B7A" id="rcJ-sN-COL"/>
+                        <outlet property="submitButton" destination="f8K-DR-KKC" id="UOB-eY-qTA"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Ief-a0-LHa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="950.72463768115949" y="116.51785714285714"/>
+        </scene>
+    </scenes>
+    <resources>
+        <namedColor name="primary">
+            <color red="0.31999999284744263" green="0.20999999344348907" blue="0.55000001192092896" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <systemColor name="labelColor">
+            <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
+</document>

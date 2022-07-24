@@ -14,7 +14,7 @@ struct ReviewsResponse: Decodable {
 
 struct Review: Codable {
     let id: String
-    let comment: String
+    let comment: String?
     let rating: Int
     let showId: Int
     let user: User
