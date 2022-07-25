@@ -63,7 +63,9 @@ class WriteReviewViewController: UIViewController {
     
     func setUpUI() {
         commentTextView.textColor = UIColor.black.withAlphaComponent(0.5)
+        commentTextView.layer.cornerRadius = 10
         submitButton.layer.cornerRadius = 24
+        
         disableSubmitButton()
     }
     
@@ -79,6 +81,7 @@ class WriteReviewViewController: UIViewController {
     
     func setUpNavigationBar() {
         self.navigationItem.title = "Write a Review"
+        self.navigationController!.navigationBar.backgroundColor = UIColor.NavigationBar.background
         addBackButtonToNavigationBar()
     }
     

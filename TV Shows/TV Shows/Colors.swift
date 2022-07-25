@@ -25,4 +25,10 @@ extension UIColor {
             return UIColor(named: "primary")!
         }
     }
+    
+    enum NavigationBar {
+        static var background: UIColor {
+            return UIColor(red: 0.98, green: 0.98, blue: 0.98, alpha: 0.94)
+        }
+    }
 }

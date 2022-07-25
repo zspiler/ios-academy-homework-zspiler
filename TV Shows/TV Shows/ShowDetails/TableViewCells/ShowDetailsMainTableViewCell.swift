@@ -63,7 +63,7 @@ private extension ShowDetailsMainTableViewCell {
     
     func setUpUI() {
         self.isUserInteractionEnabled = false
-        showCoverImageView.layer.cornerRadius = 20
+        showCoverImageView.layer.cornerRadius = 10
         showCoverImageView.layer.masksToBounds = true
     }
 }

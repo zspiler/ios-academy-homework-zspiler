@@ -79,7 +79,6 @@ class ShowDetailsViewController: UIViewController {
         let writeReviewController = storyboard.instantiateViewController(withIdentifier: "WriteReviewViewController") as! WriteReviewViewController
         writeReviewController.showId = show!.id
         writeReviewController.authInfo = authInfo!
-
         let navigationController = UINavigationController(rootViewController: writeReviewController)
         present(navigationController, animated: true)
     }

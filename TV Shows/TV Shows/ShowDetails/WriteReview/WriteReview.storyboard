@@ -19,7 +19,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="v3G-hF-B7A" customClass="RatingView" customModule="TV_Shows" customModuleProvider="target">
-                                <rect key="frame" x="10" y="103" width="394" height="75"/>
+                                <rect key="frame" x="18" y="103" width="386" height="75"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="75" id="Ukp-vt-Lq1"/>
@@ -39,7 +39,7 @@
                             </label>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="Enter your comment here..." textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="UCO-Tr-XBV" userLabel="Comment Text View">
                                 <rect key="frame" x="20" y="243" width="374" height="200"/>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <color key="backgroundColor" red="0.84705882352941175" green="0.84705882352941175" blue="0.84705882352941175" alpha="0.15212685253487124" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="200" id="MyO-Gd-qdS"/>
                                 </constraints>
@@ -69,7 +69,7 @@
                             <constraint firstItem="UCO-Tr-XBV" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" constant="20" id="4Pe-dj-Vn8"/>
                             <constraint firstItem="FOo-Sl-DJR" firstAttribute="top" secondItem="v3G-hF-B7A" secondAttribute="bottom" constant="30" id="4jU-Jl-nTN"/>
                             <constraint firstItem="f8K-DR-KKC" firstAttribute="top" secondItem="UCO-Tr-XBV" secondAttribute="bottom" constant="30" id="92N-ys-vry"/>
-                            <constraint firstItem="v3G-hF-B7A" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" constant="10" id="Mhq-EI-c79"/>
+                            <constraint firstItem="v3G-hF-B7A" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" constant="18" id="Mhq-EI-c79"/>
                             <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="f8K-DR-KKC" secondAttribute="trailing" constant="20" id="QGC-8m-3IF"/>
                             <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="UCO-Tr-XBV" secondAttribute="trailing" constant="20" id="R62-yj-Q47"/>
                             <constraint firstItem="v3G-hF-B7A" firstAttribute="top" secondItem="Lk8-Wf-lRy" secondAttribute="top" constant="29" id="Rw5-yh-nQ0"/>
