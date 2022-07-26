@@ -20,9 +20,9 @@ class ShowDetailsViewController: UIViewController {
     
     var show: Show?
     var authInfo: AuthInfo?
-    var reviews: [Review] = []
-    var page = 1
-    var numberOfPages: Int?
+    private var reviews: [Review] = []
+    private var page = 1
+    private var numberOfPages: Int?
     
     // MARK: - Lifecycle methods
 
@@ -63,15 +63,19 @@ class ShowDetailsViewController: UIViewController {
                 
                 switch response.result {
                 case .success(let reviewsResponse):
-                    self.reviews.append(contentsOf: reviewsResponse.reviews)
-                    self.numberOfPages = self.numberOfPages ?? reviewsResponse.meta.pagination.pages
-                    self.page = reviewsResponse.meta.pagination.page + 1
-                    self.tableView.reloadData()
+                    self.updateReviewsTableView(using: reviewsResponse)
                 case .failure(let error):
                     print(error)
                     Alert.displayErrorMessage(message: "Failed to fetch reviews.", from: self)
                 }
             }
+    }
+    
+    func updateReviewsTableView(using reviewsResponse: ReviewsResponse) {
+        self.reviews.append(contentsOf: reviewsResponse.reviews)
+        self.numberOfPages = self.numberOfPages ?? reviewsResponse.meta.pagination.pages
+        self.page = reviewsResponse.meta.pagination.page + 1
+        self.tableView.reloadData()
     }
     
     func presentWriteReviewScreen() {

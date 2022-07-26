@@ -80,22 +80,21 @@ class WriteReviewViewController: UIViewController {
     }
     
     func setUpNavigationBar() {
-        self.navigationItem.title = "Write a Review"
-        self.navigationController!.navigationBar.backgroundColor = UIColor.NavigationBar.background
-        addBackButtonToNavigationBar()
+        navigationItem.title = "Write a Review"
+        navigationController!.navigationBar.backgroundColor = UIColor.NavigationBar.background
+        addCloseButtonToNavigationBar()
     }
     
-    func addBackButtonToNavigationBar() {
-        let backButton = UIButton()
-        backButton.tintColor = .white
-        backButton.setTitle("Close", for: .normal)
-        backButton.setTitleColor(UIColor.Button.primary, for: .normal)
-        backButton.addTarget(self, action: #selector(tapBackButton), for: .touchUpInside)
-        self.navigationItem.leftBarButtonItem = UIBarButtonItem(customView: backButton)
+    func addCloseButtonToNavigationBar() {
+        let closeButton = UIButton()
+        closeButton.tintColor = .white
+        closeButton.setTitle("Close", for: .normal)
+        closeButton.setTitleColor(UIColor.Button.primary, for: .normal)
+        closeButton.addTarget(self, action: #selector(tapBackButton), for: .touchUpInside)
+        self.navigationItem.leftBarButtonItem = UIBarButtonItem(customView: closeButton)
     }
     
     func popViewController() {
-        navigationController?.popViewController(animated: true)
         dismiss(animated: true, completion: nil)
     }
     
@@ -124,7 +123,6 @@ extension WriteReviewViewController: UITextViewDelegate {
         userHasEditedCommentText = true
     }
     
-  
 }
 
 extension WriteReviewViewController: RatingViewDelegate {

@@ -31,7 +31,7 @@ enum ReviewsRouter: URLRequestConvertible {
     }
     
     var parameters: Parameters? {
-        let pageSize = 30
+        let pageSize = 20
         switch self {
         case .getAll(_, _, let pageNumber):
             return ["page": String(pageNumber), "items": String(pageSize)]
@@ -43,7 +43,6 @@ enum ReviewsRouter: URLRequestConvertible {
             ]
         }
     }
-    
     
     var headers: HTTPHeaders {
         switch self {

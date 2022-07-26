@@ -44,7 +44,7 @@ extension ShowDetailsMainTableViewCell {
         
         guard let averageRating = show.averageRating else { return }
         let roundedAvgRating = (averageRating * 100).rounded() / 100
-        reviewStatsDescriptionLabel.text = "\(String(show.numOfReviews)) REVIEWS, \(String(roundedAvgRating)) AVERAGE"
+        reviewStatsDescriptionLabel.text = "\(String(show.numberOfReviews)) REVIEWS, \(String(roundedAvgRating)) AVERAGE"
     }
     
     private func configureAvgRatingStarIcons(with show: Show) {
