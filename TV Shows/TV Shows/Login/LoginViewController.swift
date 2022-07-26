@@ -13,8 +13,8 @@ final class LoginViewController: UIViewController {
     
     // MARK: - Outlets
     
-    @IBOutlet private weak var emailInput: UITextField!
-    @IBOutlet private weak var passwordInput: UITextField!
+    @IBOutlet private weak var emailTextField: UITextField!
+    @IBOutlet private weak var passwordTextField: UITextField!
     @IBOutlet private weak var rememberMeCheckbox: UIButton!
     @IBOutlet private weak var loginButton: UIButton!
     @IBOutlet private weak var registerButton: UIButton!
@@ -31,7 +31,7 @@ final class LoginViewController: UIViewController {
     
     @IBAction func tapShowPasswordButton() {
         showPasswordButton.isSelected.toggle()
-        passwordInput.isSecureTextEntry.toggle()
+        passwordTextField.isSecureTextEntry.toggle()
     }
     
     @IBAction func tapRememberMeCheckbox() {
@@ -43,20 +43,20 @@ final class LoginViewController: UIViewController {
     }
     
     @IBAction func changePasswordInputText() {
-        let password = passwordInput.text ?? ""
+        let password = passwordTextField.text ?? ""
         showPasswordButton.isHidden = password.count == 0
         
         updateLoginRegisterButtons()
     }
     
     @IBAction func tapLoginButton() {
-        guard let email = emailInput.text, let password = passwordInput.text, !email.isEmpty && !password.isEmpty else { return }
+        guard let email = emailTextField.text, let password = passwordTextField.text, !email.isEmpty && !password.isEmpty else { return }
         
         loginUser(email: email, password: password)
     }
     
     @IBAction func tapRegisterButton() {
-        guard let email = emailInput.text, let password = passwordInput.text, !email.isEmpty && !password.isEmpty else { return }
+        guard let email = emailTextField.text, let password = passwordTextField.text, !email.isEmpty && !password.isEmpty else { return }
         
         registerUser(email: email, password: password)
     }
@@ -71,7 +71,7 @@ final class LoginViewController: UIViewController {
     func setUpTextFields() {
         let placeholderFont = UIFont.systemFont(ofSize: 17, weight: .light)
         
-        emailInput.attributedPlaceholder = NSAttributedString(
+        emailTextField.attributedPlaceholder = NSAttributedString(
             string: Constants.Strings.email,
             attributes: [
                 .foregroundColor: UIColor.white.withAlphaComponent(0.7),
@@ -79,7 +79,7 @@ final class LoginViewController: UIViewController {
             ]
         )
         
-        passwordInput.attributedPlaceholder = NSAttributedString(
+        passwordTextField.attributedPlaceholder = NSAttributedString(
             string: Constants.Strings.password,
             attributes: [
                 .foregroundColor: UIColor.white.withAlphaComponent(0.7),
@@ -106,8 +106,8 @@ final class LoginViewController: UIViewController {
     }
     
     func updateLoginRegisterButtons() {
-        let email = emailInput.text ?? ""
-        let password = passwordInput.text ?? ""
+        let email = emailTextField.text ?? ""
+        let password = passwordTextField.text ?? ""
         
         setLoginRegisterButtons(enabled: email.count > 0 && password.count > 0)
     }

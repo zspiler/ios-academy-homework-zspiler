@@ -65,6 +65,13 @@ class HomeViewController: UIViewController {
             }
     }
     
+    func updateShowsTableView(using showsResponse: ShowsResponse) {
+        self.shows.append(contentsOf: showsResponse.shows)
+        self.numberOfPages = self.numberOfPages ?? showsResponse.meta.pagination.pages
+        self.page = showsResponse.meta.pagination.page + 1
+        self.tableView.reloadData()
+    }
+    
 }
 
 extension HomeViewController: UITableViewDataSource {
@@ -74,7 +81,7 @@ extension HomeViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: String(describing: ShowsTableViewCell.self), for: indexPath) as! ShowsTableViewCell
-        cell.titleLabel.text = shows[indexPath.row].title
+        cell.configure(with: shows[indexPath.row])
         return cell
     }
 }
