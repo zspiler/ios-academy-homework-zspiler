@@ -6,6 +6,8 @@
 //
 
 import UIKit
+import MBProgressHUD
+
 
 final class LoginViewController: UIViewController {
     
@@ -18,6 +20,10 @@ final class LoginViewController: UIViewController {
     @IBOutlet private weak var registerButton: UIButton!
     @IBOutlet private weak var showPasswordButton: UIButton!
     
+    // MARK: - Properties
+    
+    private var user: User?
+    
     // MARK: - Lifecycle methods
     
     override func viewDidLoad() {
@@ -28,8 +34,8 @@ final class LoginViewController: UIViewController {
     // MARK: - Actions
     
     @IBAction func tapShowPasswordButton() {
-        showPasswordButton.isSelected = !showPasswordButton.isSelected
-        passwordInput.isSecureTextEntry = !showPasswordButton.isSelected
+        showPasswordButton.isSelected.toggle()
+        passwordInput.isSecureTextEntry.toggle()
     }
     
     @IBAction func tapRememberMeCheckbox() {
@@ -43,42 +49,61 @@ final class LoginViewController: UIViewController {
     @IBAction func changePasswordInputText() {
         let password = passwordInput.text ?? ""
         showPasswordButton.isHidden = password.count == 0
-
+        
         updateLoginRegisterButtons()
+    }
+    
+    @IBAction func tapLoginButton() {
+        guard let email = emailInput.text, let password = passwordInput.text, !email.isEmpty && !password.isEmpty else { return }
+        
+        loginUser(email: email, password: password)
+    }
+    
+    @IBAction func tapRegisterButton() {
+        guard let email = emailInput.text, let password = passwordInput.text, !email.isEmpty && !password.isEmpty else { return }
+        
+        registerUser(email: email, password: password)
     }
     
     // MARK: - Helpers
     
     func setUpUI() {
-        loginButton.layer.cornerRadius = 24
-        
-        rememberMeCheckbox.setImage(UIImage(named: "ic-checkbox-unselected"), for: UIControl.State.normal)
-        rememberMeCheckbox.setImage(UIImage(named: "ic-checkbox-selected"), for: UIControl.State.selected)
-        
-        showPasswordButton.setImage(UIImage(named: "ic-visible"), for: UIControl.State.normal)
-        showPasswordButton.setImage(UIImage(named: "ic-invisible"), for: UIControl.State.selected)
-        
+        setUpButtons()
+        setUpTextFields()
+    }
+    
+    func setUpTextFields() {
         let placeholderFont = UIFont.systemFont(ofSize: 17, weight: .light)
         
         emailInput.attributedPlaceholder = NSAttributedString(
             string: "Email",
-            attributes: [NSAttributedString.Key.foregroundColor: UIColor.white.withAlphaComponent(0.7),
-                         NSAttributedString.Key.font: placeholderFont
-                        ]
+            attributes: [.foregroundColor: UIColor.white.withAlphaComponent(0.7),
+                         .font: placeholderFont
+            ]
         )
         
         passwordInput.attributedPlaceholder = NSAttributedString(
             string: "Password",
-            attributes: [NSAttributedString.Key.foregroundColor: UIColor.white.withAlphaComponent(0.7), NSAttributedString.Key.font: placeholderFont]
+            attributes: [.foregroundColor: UIColor.white.withAlphaComponent(0.7),
+                         .font: placeholderFont
+            ]
         )
+    }
+    
+    func setUpButtons() {
+        rememberMeCheckbox.setImage(UIImage(named: "ic-checkbox-unselected"), for: .normal)
+        rememberMeCheckbox.setImage(UIImage(named: "ic-checkbox-selected"), for: .selected)
         
+        showPasswordButton.setImage(UIImage(named: "ic-visible"), for: .normal)
+        showPasswordButton.setImage(UIImage(named: "ic-invisible"), for: .selected)
         
-        loginButton.setTitleColor(Colors.disabledLoginButtonTitle, for: UIControl.State.disabled)
-        loginButton.setTitleColor(Colors.enabledLoginButtonTitle, for: UIControl.State.normal)
+        loginButton.layer.cornerRadius = 24
+        loginButton.setTitleColor(UIColor.Button.secondary40, for: .disabled)
+        loginButton.setTitleColor(UIColor.Button.primary, for: .normal)
         
-        registerButton.setTitleColor(Colors.disabledRegisterButtonTitle, for: UIControl.State.disabled)
-        registerButton.setTitleColor(Colors.enabledRegisterButtonTitle, for: UIControl.State.normal)
-
+        registerButton.setTitleColor(.Button.secondary40, for: .disabled)
+        registerButton.setTitleColor(.Button.secondary, for: .normal)
+        
         disableLoginRegisterButtons()
     }
     
@@ -95,12 +120,74 @@ final class LoginViewController: UIViewController {
     func disableLoginRegisterButtons() {
         loginButton.isEnabled = false
         registerButton.isEnabled = false
-        loginButton.backgroundColor = Colors.disabledLoginButtonBackground
+        loginButton.backgroundColor = .Button.secondary30
     }
     
     func enableLoginRegisterButtons() {
         loginButton.isEnabled = true
         registerButton.isEnabled = true
-        loginButton.backgroundColor = Colors.enabledLoginButtonBackground
+        loginButton.backgroundColor = .Button.secondary
+    }
+    
+    func registerUser(email: String, password: String) {
+        MBProgressHUD.showAdded(to: self.view, animated: true)
+        
+        ApiManager.session.request(AuthRouter.register(user: AuthRouter.User(email: email, password: password)))
+            .validate()
+            .responseDecodable(of: UserResponse.self) { [weak self] response in
+                guard let self = self else { return }
+                let responseHeaders = response.response?.headers.dictionary
+                MBProgressHUD.hide(for: self.view, animated: true)
+                
+                switch response.result {
+                case .success(let userRoot):
+                    self.user = userRoot.user
+                    self.pushToHomeView()
+                case .failure(let error):
+                    print("Error creating account: \(error)")
+                }
+            }
+    }
+    
+    func loginUser(email: String, password: String) {
+        MBProgressHUD.showAdded(to: self.view, animated: true)
+        
+        ApiManager.session.request(AuthRouter.login(user: AuthRouter.User(email: email, password: password)))
+            .validate()
+            .responseDecodable(of: UserResponse.self) { [weak self] response in
+                guard let self = self else { return }
+                let responseHeaders = response.response?.headers.dictionary
+                MBProgressHUD.hide(for: self.view, animated: true)
+                
+                switch response.result {
+                case .success(let userRoot):
+                    self.user = userRoot.user
+                    self.pushToHomeView()
+                case .failure(let error):
+                    print("Error signing in: \(error)")
+                }
+            }
+    }
+    
+    func pushToHomeView() {
+        let storyboard = UIStoryboard(name: "Home", bundle: nil)
+        let homeViewController = storyboard.instantiateViewController(withIdentifier: "HomeViewController")
+        navigationController?.pushViewController(homeViewController, animated: true)
+    }
+}
+
+private struct UserResponse: Decodable {
+    let user: User
+}
+
+private struct User: Codable {
+    let id: String
+    let email: String
+    let imageUrl: String?
+    
+    enum CodingKeys: String, CodingKey {
+        case email
+        case id
+        case imageUrl = "image_url"
     }
 }

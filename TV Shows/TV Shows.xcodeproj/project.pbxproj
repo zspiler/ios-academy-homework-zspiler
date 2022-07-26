@@ -8,6 +8,12 @@
 
 /* Begin PBXBuildFile section */
 		4261C4D32882B45D0068BC38 /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4261C4D22882B45D0068BC38 /* Colors.swift */; };
+		4261C4D628881D1E0068BC38 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4261C4D528881D1E0068BC38 /* HomeViewController.swift */; };
+		4261C4D828881D2F0068BC38 /* Home.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4261C4D728881D2F0068BC38 /* Home.storyboard */; };
+		4261C4DA288826680068BC38 /* AuthRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4261C4D9288826680068BC38 /* AuthRouter.swift */; };
+		4261C4DC288827AC0068BC38 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4261C4DB288827AC0068BC38 /* Constants.swift */; };
+		4261C4DE28882ABB0068BC38 /* ApiManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4261C4DD28882ABB0068BC38 /* ApiManager.swift */; };
+		4261C4E4288B1A810068BC38 /* Colors.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4261C4E3288B1A810068BC38 /* Colors.xcassets */; };
 		42D309CA2875EE6300B03062 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42D309C92875EE6300B03062 /* AppDelegate.swift */; };
 		42D309CC2875EE6300B03062 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42D309CB2875EE6300B03062 /* SceneDelegate.swift */; };
 		42D309CE2875EE6300B03062 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42D309CD2875EE6300B03062 /* ViewController.swift */; };
@@ -15,10 +21,19 @@
 		42D309D62875EE6500B03062 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 42D309D42875EE6500B03062 /* LaunchScreen.storyboard */; };
 		42D309DF2878A8C900B03062 /* Login.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 42D309DE2878A8C900B03062 /* Login.storyboard */; };
 		42D309E12878A8DB00B03062 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42D309E02878A8DB00B03062 /* LoginViewController.swift */; };
+		552AB59A6460E6D2FB4B6AFB /* Pods_TV_Shows.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 351340DE7E1DCDB4DC3CA631 /* Pods_TV_Shows.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		2415CC3BC18B2F5275868735 /* Pods-TV Shows.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TV Shows.release.xcconfig"; path = "Target Support Files/Pods-TV Shows/Pods-TV Shows.release.xcconfig"; sourceTree = "<group>"; };
+		351340DE7E1DCDB4DC3CA631 /* Pods_TV_Shows.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TV_Shows.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		4261C4D22882B45D0068BC38 /* Colors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
+		4261C4D528881D1E0068BC38 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
+		4261C4D728881D2F0068BC38 /* Home.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Home.storyboard; sourceTree = "<group>"; };
+		4261C4D9288826680068BC38 /* AuthRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthRouter.swift; sourceTree = "<group>"; };
+		4261C4DB288827AC0068BC38 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		4261C4DD28882ABB0068BC38 /* ApiManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiManager.swift; sourceTree = "<group>"; };
+		4261C4E3288B1A810068BC38 /* Colors.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Colors.xcassets; sourceTree = "<group>"; };
 		42D309C62875EE6300B03062 /* TV Shows.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "TV Shows.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		42D309C92875EE6300B03062 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		42D309CB2875EE6300B03062 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -28,6 +43,7 @@
 		42D309D72875EE6500B03062 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		42D309DE2878A8C900B03062 /* Login.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Login.storyboard; sourceTree = "<group>"; };
 		42D309E02878A8DB00B03062 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		E0E1E13A6BF9FE52A70D3400 /* Pods-TV Shows.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TV Shows.debug.xcconfig"; path = "Target Support Files/Pods-TV Shows/Pods-TV Shows.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -35,17 +51,46 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				552AB59A6460E6D2FB4B6AFB /* Pods_TV_Shows.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		4261C4D428881CF60068BC38 /* Home */ = {
+			isa = PBXGroup;
+			children = (
+				4261C4D528881D1E0068BC38 /* HomeViewController.swift */,
+				4261C4D728881D2F0068BC38 /* Home.storyboard */,
+			);
+			path = Home;
+			sourceTree = "<group>";
+		};
+		4261C4DF28882DCD0068BC38 /* API */ = {
+			isa = PBXGroup;
+			children = (
+				4261C4E028882E030068BC38 /* Routers */,
+				4261C4DD28882ABB0068BC38 /* ApiManager.swift */,
+			);
+			path = API;
+			sourceTree = "<group>";
+		};
+		4261C4E028882E030068BC38 /* Routers */ = {
+			isa = PBXGroup;
+			children = (
+				4261C4D9288826680068BC38 /* AuthRouter.swift */,
+			);
+			path = Routers;
+			sourceTree = "<group>";
+		};
 		42D309BD2875EE6300B03062 = {
 			isa = PBXGroup;
 			children = (
 				42D309C82875EE6300B03062 /* TV Shows */,
 				42D309C72875EE6300B03062 /* Products */,
+				CF640C0637F9C4844D738115 /* Pods */,
+				FE670E8147621C216553C9F3 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -60,6 +105,8 @@
 		42D309C82875EE6300B03062 /* TV Shows */ = {
 			isa = PBXGroup;
 			children = (
+				4261C4DF28882DCD0068BC38 /* API */,
+				4261C4D428881CF60068BC38 /* Home */,
 				42D309DD2878A8B300B03062 /* Login */,
 				42D309C92875EE6300B03062 /* AppDelegate.swift */,
 				42D309CB2875EE6300B03062 /* SceneDelegate.swift */,
@@ -67,6 +114,8 @@
 				42D309D22875EE6500B03062 /* Assets.xcassets */,
 				42D309D42875EE6500B03062 /* LaunchScreen.storyboard */,
 				42D309D72875EE6500B03062 /* Info.plist */,
+				4261C4DB288827AC0068BC38 /* Constants.swift */,
+				4261C4E3288B1A810068BC38 /* Colors.xcassets */,
 			);
 			path = "TV Shows";
 			sourceTree = "<group>";
@@ -81,6 +130,23 @@
 			path = Login;
 			sourceTree = "<group>";
 		};
+		CF640C0637F9C4844D738115 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				E0E1E13A6BF9FE52A70D3400 /* Pods-TV Shows.debug.xcconfig */,
+				2415CC3BC18B2F5275868735 /* Pods-TV Shows.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
+		FE670E8147621C216553C9F3 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				351340DE7E1DCDB4DC3CA631 /* Pods_TV_Shows.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -88,9 +154,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 42D309DA2875EE6500B03062 /* Build configuration list for PBXNativeTarget "TV Shows" */;
 			buildPhases = (
+				CD95E07466A8E610ACBA9E48 /* [CP] Check Pods Manifest.lock */,
 				42D309C22875EE6300B03062 /* Sources */,
 				42D309C32875EE6300B03062 /* Frameworks */,
 				42D309C42875EE6300B03062 /* Resources */,
+				AF94FD0BF111D0D1B478974F /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -139,13 +207,57 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4261C4E4288B1A810068BC38 /* Colors.xcassets in Resources */,
 				42D309D62875EE6500B03062 /* LaunchScreen.storyboard in Resources */,
 				42D309D32875EE6500B03062 /* Assets.xcassets in Resources */,
 				42D309DF2878A8C900B03062 /* Login.storyboard in Resources */,
+				4261C4D828881D2F0068BC38 /* Home.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		AF94FD0BF111D0D1B478974F /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-TV Shows/Pods-TV Shows-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-TV Shows/Pods-TV Shows-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-TV Shows/Pods-TV Shows-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		CD95E07466A8E610ACBA9E48 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-TV Shows-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		42D309C22875EE6300B03062 /* Sources */ = {
@@ -157,6 +269,10 @@
 				42D309CE2875EE6300B03062 /* ViewController.swift in Sources */,
 				42D309CA2875EE6300B03062 /* AppDelegate.swift in Sources */,
 				42D309CC2875EE6300B03062 /* SceneDelegate.swift in Sources */,
+				4261C4D628881D1E0068BC38 /* HomeViewController.swift in Sources */,
+				4261C4DA288826680068BC38 /* AuthRouter.swift in Sources */,
+				4261C4DC288827AC0068BC38 /* Constants.swift in Sources */,
+				4261C4DE28882ABB0068BC38 /* ApiManager.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -290,6 +406,7 @@
 		};
 		42D309DB2875EE6500B03062 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = E0E1E13A6BF9FE52A70D3400 /* Pods-TV Shows.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -319,6 +436,7 @@
 		};
 		42D309DC2875EE6500B03062 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 2415CC3BC18B2F5275868735 /* Pods-TV Shows.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;

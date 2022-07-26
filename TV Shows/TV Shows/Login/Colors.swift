@@ -7,11 +7,22 @@
 
 import UIKit
 
-struct Colors {
-    static let disabledLoginButtonBackground = UIColor.white.withAlphaComponent(0.3)
-    static let enabledLoginButtonBackground = UIColor.white
-    static let disabledLoginButtonTitle = UIColor.white.withAlphaComponent(0.4)
-    static let enabledLoginButtonTitle = UIColor(red: 0.32, green: 0.21, blue: 0.55, alpha: 1.00)
-    static let disabledRegisterButtonTitle = UIColor.white.withAlphaComponent(0.4)
-    static let enabledRegisterButtonTitle = UIColor.white
+extension UIColor {
+    enum Button {
+        static var secondary: UIColor {
+            return UIColor(named: "secondary")!
+        }
+        
+        static var secondary30: UIColor {
+            return UIColor(named: "secondary30")!
+        }
+        
+        static var secondary40: UIColor {
+            return UIColor(named: "secondary40")!
+        }
+        
+        static var primary: UIColor {
+            return UIColor(named: "primary")!
+        }
+    }
 }
