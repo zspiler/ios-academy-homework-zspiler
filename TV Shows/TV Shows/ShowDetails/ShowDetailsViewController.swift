@@ -81,23 +81,23 @@ class ShowDetailsViewController: UIViewController {
     func presentWriteReviewScreen() {
         let storyboard = UIStoryboard(name: "WriteReview", bundle: nil)
         let writeReviewController = storyboard.instantiateViewController(withIdentifier: "WriteReviewViewController") as! WriteReviewViewController
-        writeReviewController.showId = show!.id
-        writeReviewController.authInfo = authInfo!
+        writeReviewController.setAuthenticationAndShowData(showId: show?.id, authInfo: authInfo)
+
         let navigationController = UINavigationController(rootViewController: writeReviewController)
         present(navigationController, animated: true)
     }
 }
 
 extension ShowDetailsViewController: UITableViewDataSource {
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return reviews.count + 1
     }
 
-
     func tableView(_ tableView: UITableView,cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if indexPath.row == 0 {
             let cell = tableView.dequeueReusableCell(withIdentifier: "showDetailsMainCell", for: indexPath) as! ShowDetailsMainTableViewCell
-            cell.configure(with: show!)
+            cell.configure(with: show)
             return cell
         } else {
             let cell = tableView.dequeueReusableCell(withIdentifier: "showDetailsReviewCell", for: indexPath) as! ShowDetailsReviewTableViewCell

@@ -40,7 +40,7 @@ extension ShowDetailsReviewTableViewCell {
     
     private func configureRatingStarIcons(with review: Review) {
         let starIcons = ratingStarsStackView.arrangedSubviews as! [UIImageView]
-        for (index, element) in starIcons.enumerated() {
+        starIcons.enumerated().forEach { index, element in
             if review.rating < index + 1 {
                 element.image = UIImage(named: "ic-star-deselected")
             }

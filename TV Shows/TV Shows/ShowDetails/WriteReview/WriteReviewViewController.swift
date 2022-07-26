@@ -19,17 +19,14 @@ class WriteReviewViewController: UIViewController {
     
     // MARK: - Properties
     
-    var showId: String?
-    var authInfo: AuthInfo?
-    var userHasEditedCommentText = false
+    private var showId: String?
+    private var authInfo: AuthInfo?
+    private var userHasEditedCommentText = false
     
     // MARK: - View lifecycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        ratingView.configure(withStyle: .large)
-        ratingView.delegate = self
-        commentTextView.delegate = self
         setUpNavigationBar()
         setUpUI()
     }
@@ -41,6 +38,11 @@ class WriteReviewViewController: UIViewController {
     }
     
     // MARK: - Helpers
+    
+    func setAuthenticationAndShowData(showId: String?, authInfo: AuthInfo?) {
+        self.showId = showId
+        self.authInfo = authInfo
+    }
     
     func submitReview() {
         guard let authInfo = authInfo, let showId = showId else { return }
@@ -62,21 +64,20 @@ class WriteReviewViewController: UIViewController {
     }
     
     func setUpUI() {
+        ratingView.configure(withStyle: .large)
+        ratingView.delegate = self
+        
+        commentTextView.delegate = self
         commentTextView.textColor = UIColor.black.withAlphaComponent(0.5)
         commentTextView.layer.cornerRadius = 10
-        submitButton.layer.cornerRadius = 24
         
-        disableSubmitButton()
+        submitButton.layer.cornerRadius = 24
+        setSubmitButton(enabled: false)
     }
     
-    func disableSubmitButton() {
-        submitButton.isEnabled = false
-        submitButton.alpha = 0.2
-    }
-    
-    func enableSubmitButton() {
-        submitButton.isEnabled = true
-        submitButton.alpha = 1
+    func setSubmitButton(enabled: Bool) {
+        submitButton.isEnabled = enabled
+        submitButton.alpha = enabled ? 1 : 0.2
     }
     
     func setUpNavigationBar() {
@@ -104,9 +105,9 @@ class WriteReviewViewController: UIViewController {
     
     func validateInputs() {
         if !userHasEditedCommentText || ratingView.rating == 0 || commentTextView.text.isEmpty {
-            disableSubmitButton()
+            setSubmitButton(enabled: false)
         } else {
-            enableSubmitButton()
+            setSubmitButton(enabled: true)
         }
     }
 }

@@ -29,7 +29,8 @@ class ShowDetailsMainTableViewCell: UITableViewCell {
 
 extension ShowDetailsMainTableViewCell {
     
-    func configure(with show: Show) {
+    func configure(with show: Show?) {
+        guard let show = show else { return }
         configureImageView(with: show)
         configureLabels(with: show)
         configureAvgRatingStarIcons(with: show)
@@ -51,7 +52,7 @@ extension ShowDetailsMainTableViewCell {
         guard let averageRating = show.averageRating else { return }
         
         let starIcons = avgRatingStarsStackView.arrangedSubviews as! [UIImageView]
-        for (index, element) in starIcons.enumerated() {
+        starIcons.enumerated().forEach { index, element in
             if averageRating < Double(index + 1) {
                 element.image = UIImage(named: "ic-star-deselected")
             }

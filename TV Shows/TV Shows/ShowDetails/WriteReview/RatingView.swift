@@ -137,7 +137,7 @@ private extension RatingView {
             return
         }
         setRating(buttonIndex + 1)
-        for (index, button) in ratingButtons.enumerated() {
+        ratingButtons.enumerated().forEach { index, button in
             button.isSelected = buttonIndex >= index
         }
         delegate?.didChangeRating(rating)
