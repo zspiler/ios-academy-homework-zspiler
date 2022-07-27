@@ -140,6 +140,7 @@ final class LoginViewController: UIViewController {
                     self.handleSuccesfulLogin(for: userResponse.user, headers: headers)
                 case .failure(_):
                     Alert.displayErrorMessage(message: "Failed to create new account.\nPlease try again.", from: self)
+                    self.registerButton.pulsate()
                 }
             }
     }
@@ -159,6 +160,7 @@ final class LoginViewController: UIViewController {
                     self.handleSuccesfulLogin(for: userResponse.user, headers: headers)
                 case .failure(_):
                     Alert.displayErrorMessage(message: "Failed to sign you in.\nPlease try again.", from: self)
+                    self.loginButton.pulsate()
                 }
             }
     }
@@ -174,9 +176,11 @@ final class LoginViewController: UIViewController {
     func handleSuccesfulLogin(for user: User, headers: [String: String]) {
         guard let authInfo = try? AuthInfo(headers: headers) else {
             Alert.displayErrorMessage(message: "Failed to sign you in.\nPlease try again.", from: self)
+            self.loginButton.pulsate()
             return
         }
         self.pushToHomeView(with: user, authInfo: authInfo)
     }
+    
     
 }
