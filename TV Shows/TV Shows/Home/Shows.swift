@@ -16,7 +16,7 @@ struct Show: Codable {
     let id: String
     let title: String
     let description: String?
-    let imageUrl: String
+    let imageUrl: URL
     let averageRating: Double?
     let numberOfReviews: Int
     

@@ -16,8 +16,8 @@ class HomeViewController: UIViewController {
     
     // MARK: - Properties
     
-    var user: User?
-    var authInfo: AuthInfo?
+    private var user: User?
+    private var authInfo: AuthInfo?
     var shows: [Show] = []
     var page = 1
     var numberOfPages: Int?
@@ -35,6 +35,11 @@ class HomeViewController: UIViewController {
     }
     
     // MARK: - Helpers
+    
+    func setUserData(user: User?, authInfo: AuthInfo?) {
+        self.user = user
+        self.authInfo = authInfo
+    }
     
     func fetchShows() {
         guard let authInfo = authInfo else { return }
@@ -68,7 +73,7 @@ extension HomeViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: String(describing: ShowsTableViewCell.self), for: indexPath) as! ShowsTableViewCell
-        cell.titleLabel.text = shows[indexPath.row].title
+        cell.configure(with: shows[indexPath.row])
         return cell
     }
 }

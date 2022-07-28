@@ -36,6 +36,15 @@ extension ShowDetailsReviewTableViewCell {
         emailLabel.text = review.user.email
         
         configureRatingStarIcons(with: review)
+        configureImageView(with: review)
+    }
+    
+    private func configureImageView(with review: Review) {
+        profilePictureImageView.kf.setImage(
+            with: review.user.imageUrl,
+            placeholder: UIImage(named: "ic-profile-placeholder"),
+            options: nil
+        )
     }
     
     private func configureRatingStarIcons(with review: Review) {

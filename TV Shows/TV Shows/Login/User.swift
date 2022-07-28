@@ -11,10 +11,15 @@ struct UserResponse: Decodable {
     let user: User
 }
 
+struct UserData: Codable {
+    let user: User
+    let authInfo: AuthInfo
+}
+
 struct User: Codable {
     let id: String
     let email: String
-    let imageUrl: String?
+    let imageUrl: URL?
     
     enum CodingKeys: String, CodingKey {
         case email

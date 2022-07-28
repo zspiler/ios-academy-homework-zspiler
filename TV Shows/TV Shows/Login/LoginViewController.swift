@@ -166,10 +166,9 @@ final class LoginViewController: UIViewController {
     }
     
     func pushToHomeView(with user: User, authInfo: AuthInfo) {
-        let storyboard = UIStoryboard(name: "Home", bundle: nil)
+        let storyboard = UIStoryboard(name: Constants.Storyboards.home, bundle: nil)
         let homeViewController = storyboard.instantiateViewController(withIdentifier: "HomeViewController") as! HomeViewController
-        homeViewController.user = user
-        homeViewController.authInfo = authInfo
+        homeViewController.setUserData(user: user, authInfo: authInfo)
         navigationController?.pushViewController(homeViewController, animated: true)
     }
     
@@ -179,8 +178,16 @@ final class LoginViewController: UIViewController {
             self.loginButton.pulsate()
             return
         }
+        if rememberMeCheckbox.isSelected {
+            self.updateUserDefaults(authInfo: authInfo, user: user)
+        }
         self.pushToHomeView(with: user, authInfo: authInfo)
     }
     
-    
+    func updateUserDefaults(authInfo: AuthInfo, user: User) {
+        let userData = UserData(user: user, authInfo: authInfo)
+        if let encodedUserData = try? JSONEncoder().encode(userData) {
+            UserDefaults.standard.set(encodedUserData, forKey: Constants.Defaults.userData.rawValue)
+        }
+    }
 }

@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Kingfisher
 
 class ShowDetailsMainTableViewCell: UITableViewCell {
     
@@ -37,7 +38,11 @@ extension ShowDetailsMainTableViewCell {
     }
     
     private func configureImageView(with show: Show) {
-        showCoverImageView.image = UIImage(named: "ic-show-placeholder-rectangle")
+        showCoverImageView.kf.setImage(
+            with: show.imageUrl,
+            placeholder: UIImage(named: "ic-show-placeholder-rectangle"),
+            options: nil
+        )
     }
     
     private func configureLabels(with show: Show) {
