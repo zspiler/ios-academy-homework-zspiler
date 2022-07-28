@@ -1,54 +1,50 @@
 //
-//  API.swift
+//  ShowsRouter.swift
 //  TV Shows
 //
-//  Created by Infinum on 20.07.2022..
+//  Created by Infinum on 23.07.2022..
 //
 
 import Alamofire
 
-enum AuthRouter: URLRequestConvertible {
+enum ShowsRouter: URLRequestConvertible {
     
-    case login(user: User)
-    case register(user: User)
-
+    case getAll(authInfo: AuthInfo, pageNumber: Int)
+        
     var path: String {
-        let endpoint = "users"
+        let endpoint = "shows"
         switch self {
-        case .register:
+        case .getAll:
             return "\(endpoint)"
-        case .login :
-            return "\(endpoint)/sign_in"
         }
     }
     
     var method: HTTPMethod {
         switch self {
-        case .login, .register:
-            return .post
+        case .getAll:
+            return .get
         }
     }
     
     var parameters: Parameters? {
+        let pageSize = 30
         switch self {
-        case .login(let user):
-            return [
-                "email" : user.email,
-                "password" : user.password
-            ]
-        case .register(let user):
-            return [
-                "email" : user.email,
-                "password" : user.password,
-                "confirm_password" : user.password
-            ]
+        case .getAll(_, let pageNumber):
+            return ["page": String(pageNumber), "items": String(pageSize)]
+        }
+    }
+    
+    var headers: HTTPHeaders {
+        switch self {
+        case .getAll(let authInfo, _):
+            return HTTPHeaders(authInfo.headers)
         }
     }
     
     var encodingType: ParameterEncoding {
         switch self {
-        case .login, .register:
-            return JSONEncoding.default
+        case .getAll:
+            return URLEncoding.default
         }
     }
     
@@ -59,11 +55,8 @@ enum AuthRouter: URLRequestConvertible {
         var request = URLRequest.init(url: url!)
         request.httpMethod = method.rawValue
         request.timeoutInterval = TimeInterval(10*1000)
+        request.headers = headers
         return try encodingType.encode(request,with: parameters)
     }
-    
-    struct User {
-        let email: String
-        let password: String
-    }
+
 }

@@ -209,9 +209,9 @@
                     </view>
                     <navigationItem key="navigationItem" id="QXQ-XZ-caI"/>
                     <connections>
-                        <outlet property="emailInput" destination="wtR-vp-y4b" id="xaZ-sW-PyQ"/>
+                        <outlet property="emailTextField" destination="wtR-vp-y4b" id="xaZ-sW-PyQ"/>
                         <outlet property="loginButton" destination="e2u-RT-VWN" id="BJl-Os-9Mv"/>
-                        <outlet property="passwordInput" destination="rHk-Jb-ciu" id="Dff-wa-UYU"/>
+                        <outlet property="passwordTextField" destination="rHk-Jb-ciu" id="Dff-wa-UYU"/>
                         <outlet property="registerButton" destination="p5R-wg-S65" id="Cnz-Vq-rGs"/>
                         <outlet property="rememberMeCheckbox" destination="qkZ-89-3R6" id="z6i-o8-7NE"/>
                         <outlet property="showPasswordButton" destination="AiZ-OD-YNp" id="5wU-qe-W0n"/>
