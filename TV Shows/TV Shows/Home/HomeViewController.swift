@@ -18,19 +18,15 @@ class HomeViewController: UIViewController {
     
     private var user: User?
     private var authInfo: AuthInfo?
-    var shows: [Show] = []
-    var page = 1
-    var numberOfPages: Int?
+    private var shows: [Show] = []
+    private var page = 1
+    private var numberOfPages: Int?
     
     // MARK: - Lifecycle methods
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        navigationController?.setViewControllers([self], animated: true)
-        tableView.dataSource = self
-        tableView.delegate = self
-        
+        setUpTableViewAndNavController()
         fetchShows()
     }
     
@@ -39,6 +35,13 @@ class HomeViewController: UIViewController {
     func setUserData(user: User?, authInfo: AuthInfo?) {
         self.user = user
         self.authInfo = authInfo
+    }
+    
+
+    func setUpTableViewAndNavController() {
+        navigationController?.setViewControllers([self], animated: true)
+        tableView.dataSource = self
+        tableView.delegate = self
     }
     
     func fetchShows() {
@@ -57,11 +60,17 @@ class HomeViewController: UIViewController {
                     self.numberOfPages = self.numberOfPages ?? showsResponse.meta.pagination.pages
                     self.page = showsResponse.meta.pagination.page + 1
                     self.tableView.reloadData()
-                case .failure(let error):
-                    print(error)
-                    Alert.displayErrorMessage(message: "Failed to fetch shows.", from: self)
+                case .failure:
+                    self.displayErrorMessage(message: Constants.Error.fetchShows)
                 }
             }
+    }
+    
+    func updateShowsTableView(using showsResponse: ShowsResponse) {
+        self.shows.append(contentsOf: showsResponse.shows)
+        self.numberOfPages = self.numberOfPages ?? showsResponse.meta.pagination.pages
+        self.page = showsResponse.meta.pagination.page + 1
+        self.tableView.reloadData()
     }
     
 }
