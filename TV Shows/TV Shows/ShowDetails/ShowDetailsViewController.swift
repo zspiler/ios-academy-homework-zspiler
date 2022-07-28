@@ -64,9 +64,8 @@ class ShowDetailsViewController: UIViewController {
                 switch response.result {
                 case .success(let reviewsResponse):
                     self.updateReviewsTableView(using: reviewsResponse)
-                case .failure(let error):
-                    print(error)
-                    Alert.displayErrorMessage(message: "Failed to fetch reviews.", from: self)
+                case .failure:
+                    self.displayErrorMessage(message: "Failed to fetch reviews.")
                 }
             }
     }
