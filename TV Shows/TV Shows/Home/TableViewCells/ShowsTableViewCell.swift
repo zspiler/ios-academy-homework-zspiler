@@ -9,6 +9,13 @@ import UIKit
 
 class ShowsTableViewCell: UITableViewCell {
     
-    @IBOutlet weak var titleLabel: UILabel!
+    // MARK: - Outlets
     
+    @IBOutlet private weak var titleLabel: UILabel!
+    
+    // MARK: - Configure
+    
+    func configure(with show: Show) {
+        titleLabel.text = show.title
+    }
 }

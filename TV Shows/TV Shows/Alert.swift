@@ -7,10 +7,10 @@
 
 import UIKit
 
-struct Alert {
-    static func displayErrorMessage(message: String, from controller: UIViewController) {
+extension UIViewController {
+    func displayErrorMessage(message: String) {
         let alertController = UIAlertController(title: "Error", message: message, preferredStyle: .alert)
         alertController.addAction(UIAlertAction(title: "OK", style: .cancel))
-        controller.present(alertController, animated: true)
+        self.present(alertController, animated: true)
     }
 }
