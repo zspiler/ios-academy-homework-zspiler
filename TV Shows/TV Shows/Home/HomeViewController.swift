@@ -41,7 +41,7 @@ class HomeViewController: UIViewController {
     func setAuthInfo(_ authInfo: AuthInfo) {
         self.authInfo = authInfo
     }
-    
+
     func setUpTableViewAndNavController() {
         navigationController?.setViewControllers([self], animated: true)
         tableView.dataSource = self

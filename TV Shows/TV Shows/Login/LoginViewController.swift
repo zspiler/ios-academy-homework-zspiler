@@ -8,6 +8,7 @@
 import UIKit
 import MBProgressHUD
 
+import KeychainAccess
 
 final class LoginViewController: UIViewController {
     
@@ -174,14 +175,19 @@ final class LoginViewController: UIViewController {
             return
         }
         if rememberMeCheckbox.isSelected {
-            self.updateUserDefaults(with: authInfo)
+            self.updateKeychain(authInfo)
         }
         self.pushToHomeView(with: user, authInfo: authInfo)
     }
-    
-    func updateUserDefaults(with authInfo: AuthInfo) {
-        if let encodedUserData = try? JSONEncoder().encode(authInfo) {
-            UserDefaults.standard.set(encodedUserData, forKey: Constants.Defaults.authInfo.rawValue)
+
+    func updateKeychain(_ authInfo: AuthInfo) {
+        if let encodedAuthInfo = try? JSONEncoder().encode(authInfo) {
+            do {
+                try Keychain().set(encodedAuthInfo, key: "authInfo")
+            }
+            catch {
+                self.displayErrorMessage(message: Constants.Error.login)
+            }
         }
     }
    
