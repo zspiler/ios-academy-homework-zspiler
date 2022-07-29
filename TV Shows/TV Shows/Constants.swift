@@ -29,6 +29,7 @@ enum Constants {
         static let fetchReviews = "Failed to fetch reviews."
         static let user = "Failed to fetch information about user."
         static let profilePhotoUpload = "Failed to upload photo."
+        static let logout = "Failed to log out."
     }
     
     enum Storyboards {
@@ -50,7 +51,5 @@ enum Constants {
     enum Notifications {
         static let logout = Notification.Name(rawValue: "Logout")
     }
-    
-    
     
 }

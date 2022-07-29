@@ -9,6 +9,7 @@ import UIKit
 import MBProgressHUD
 
 import Alamofire
+import KeychainAccess
 
 class ProfileDetailsViewController: UIViewController {
     
@@ -35,8 +36,13 @@ class ProfileDetailsViewController: UIViewController {
     // MARK: - Actions
     
     @IBAction func tapLogoutButton() {
+        do {
+            try Keychain().remove(Constants.Defaults.authInfo.rawValue)
+        } catch {
+            self.displayErrorMessage(message: Constants.Error.logout)
+            return
+        }
         dismiss(animated: true, completion: {
-            UserDefaults.standard.removeObject(forKey: Constants.Defaults.authInfo.rawValue)
             NotificationCenter.default.post(
                 Notification(
                     name: Constants.Notifications.logout,
@@ -56,7 +62,7 @@ class ProfileDetailsViewController: UIViewController {
     }
     
     // MARK: - Helpers
-    
+
     func setAuthInfo(_ authInfo: AuthInfo?) {
         self.authInfo = authInfo
     }
