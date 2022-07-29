@@ -16,7 +16,6 @@ class HomeViewController: UIViewController {
     
     // MARK: - Properties
     
-    private var user: User?
     private var authInfo: AuthInfo?
     private var shows: [Show] = []
     private var page = 1
@@ -32,11 +31,10 @@ class HomeViewController: UIViewController {
     
     // MARK: - Helpers
     
-    func setUserData(user: User, authInfo: AuthInfo) {
-        self.user = user
+    func setAuthInfo(_ authInfo: AuthInfo) {
         self.authInfo = authInfo
     }
-    
+
     func setUpTableViewAndNavController() {
         navigationController?.setViewControllers([self], animated: true)
         tableView.dataSource = self
@@ -97,8 +95,8 @@ extension HomeViewController: UITableViewDelegate {
         
         let storyboard = UIStoryboard(name: "ShowDetails", bundle: nil)
         let showDetailsViewController = storyboard.instantiateViewController(withIdentifier: "ShowDetailsViewController") as! ShowDetailsViewController
-        showDetailsViewController.authInfo = authInfo
-        showDetailsViewController.show = shows[indexPath.row]
+        showDetailsViewController.setAuthInfo(authInfo)
+        showDetailsViewController.setShow(shows[indexPath.row])
         navigationController?.pushViewController(showDetailsViewController, animated: true)
     }
     

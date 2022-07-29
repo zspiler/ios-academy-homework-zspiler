@@ -21,28 +21,39 @@
                                 <rect key="frame" x="0.0" y="44" width="414" height="818"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="ShowsTableViewCell" id="Tyv-6F-Cft" customClass="ShowsTableViewCell" customModule="TV_Shows" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="44.5" width="414" height="59"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="ShowsTableViewCell" rowHeight="114" id="Tyv-6F-Cft" customClass="ShowsTableViewCell" customModule="TV_Shows" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="44.5" width="414" height="114"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Tyv-6F-Cft" id="Mua-0i-Kxm">
-                                            <rect key="frame" x="0.0" y="0.0" width="414" height="59"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="114"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jXu-xT-PNG" userLabel="ShowTitleLabel">
-                                                    <rect key="frame" x="28" y="19" width="358" height="21"/>
+                                                    <rect key="frame" x="104" y="19" width="282" height="76"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="KLs-vK-GVu" userLabel="ShowImageView">
+                                                    <rect key="frame" x="16" y="12" width="64" height="90"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="90" id="AWg-dq-KxR"/>
+                                                        <constraint firstAttribute="width" constant="64" id="nvg-pl-fC0"/>
+                                                    </constraints>
+                                                </imageView>
                                             </subviews>
                                             <constraints>
                                                 <constraint firstItem="jXu-xT-PNG" firstAttribute="top" secondItem="Mua-0i-Kxm" secondAttribute="topMargin" constant="8" id="0pa-cy-GcX"/>
+                                                <constraint firstItem="KLs-vK-GVu" firstAttribute="top" secondItem="Mua-0i-Kxm" secondAttribute="top" constant="12" id="LIP-xR-wVQ"/>
+                                                <constraint firstAttribute="bottom" secondItem="KLs-vK-GVu" secondAttribute="bottom" constant="12" id="Vmb-OA-AGf"/>
+                                                <constraint firstItem="jXu-xT-PNG" firstAttribute="leading" secondItem="KLs-vK-GVu" secondAttribute="trailing" constant="24" id="YFP-2A-Xh3"/>
                                                 <constraint firstAttribute="trailingMargin" secondItem="jXu-xT-PNG" secondAttribute="trailing" constant="8" id="bQo-Ab-hWV"/>
-                                                <constraint firstItem="jXu-xT-PNG" firstAttribute="leading" secondItem="Mua-0i-Kxm" secondAttribute="leadingMargin" constant="8" id="ufC-gU-mb1"/>
+                                                <constraint firstItem="KLs-vK-GVu" firstAttribute="leading" secondItem="Mua-0i-Kxm" secondAttribute="leading" constant="16" id="oBS-5v-0om"/>
                                                 <constraint firstAttribute="bottomMargin" secondItem="jXu-xT-PNG" secondAttribute="bottom" constant="8" id="xb0-Oe-6ng"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
+                                            <outlet property="showImageView" destination="KLs-vK-GVu" id="DqY-3Z-izA"/>
                                             <outlet property="titleLabel" destination="jXu-xT-PNG" id="3d1-Xs-Bmr"/>
                                         </connections>
                                     </tableViewCell>

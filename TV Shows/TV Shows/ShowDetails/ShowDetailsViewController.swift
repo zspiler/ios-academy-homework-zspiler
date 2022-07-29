@@ -18,8 +18,8 @@ class ShowDetailsViewController: UIViewController {
     
     // MARK: - Properties
     
-    var show: Show?
-    var authInfo: AuthInfo?
+    private var show: Show?
+    private var authInfo: AuthInfo?
     private var reviews: [Review] = []
     private var page = 1
     private var numberOfPages: Int?
@@ -40,6 +40,14 @@ class ShowDetailsViewController: UIViewController {
     }
     
     // MARK: - Helpers
+    
+    func setShow(_ show: Show?) {
+        self.show = show
+    }
+    
+    func setAuthInfo(_ authInfo: AuthInfo?) {
+        self.authInfo = authInfo
+    }
     
     func setUpUI() {
         showTitleLabel.text = show?.title
@@ -64,9 +72,8 @@ class ShowDetailsViewController: UIViewController {
                 switch response.result {
                 case .success(let reviewsResponse):
                     self.updateReviewsTableView(using: reviewsResponse)
-                case .failure(let error):
-                    print(error)
-                    Alert.displayErrorMessage(message: "Failed to fetch reviews.", from: self)
+                case .failure:
+                    self.displayErrorMessage(message: "Failed to fetch reviews.")
                 }
             }
     }

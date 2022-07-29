@@ -6,16 +6,24 @@
 //
 
 import UIKit
+import Kingfisher
 
 class ShowsTableViewCell: UITableViewCell {
     
     // MARK: - Outlets
-    
+       
     @IBOutlet private weak var titleLabel: UILabel!
+    @IBOutlet private weak var showImageView: UIImageView!
     
     // MARK: - Configure
-    
+   
     func configure(with show: Show) {
         titleLabel.text = show.title
+        
+        showImageView.kf.setImage(
+            with: show.imageUrl,
+            placeholder: UIImage(named: "ic-show-placeholder-vertical"),
+            options: nil
+        )
     }
 }

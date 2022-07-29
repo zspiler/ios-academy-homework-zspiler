@@ -28,6 +28,7 @@
 		4261C50A288D94E00068BC38 /* WriteReviewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4261C509288D94E00068BC38 /* WriteReviewViewController.swift */; };
 		42729105288D98060029262A /* WriteReview.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 42729104288D98060029262A /* WriteReview.storyboard */; };
 		4272910B288D9CEF0029262A /* RatingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4272910A288D9CEF0029262A /* RatingView.swift */; };
+		4272910D28907EA60029262A /* Animations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4272910C28907EA60029262A /* Animations.swift */; };
 		42D309CA2875EE6300B03062 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42D309C92875EE6300B03062 /* AppDelegate.swift */; };
 		42D309CC2875EE6300B03062 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42D309CB2875EE6300B03062 /* SceneDelegate.swift */; };
 		42D309CE2875EE6300B03062 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42D309CD2875EE6300B03062 /* ViewController.swift */; };
@@ -62,6 +63,7 @@
 		4261C509288D94E00068BC38 /* WriteReviewViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WriteReviewViewController.swift; sourceTree = "<group>"; };
 		42729104288D98060029262A /* WriteReview.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = WriteReview.storyboard; sourceTree = "<group>"; };
 		4272910A288D9CEF0029262A /* RatingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RatingView.swift; sourceTree = "<group>"; };
+		4272910C28907EA60029262A /* Animations.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Animations.swift; sourceTree = "<group>"; };
 		42D309C62875EE6300B03062 /* TV Shows.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "TV Shows.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		42D309C92875EE6300B03062 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		42D309CB2875EE6300B03062 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -190,6 +192,7 @@
 				4261C4E3288B1A810068BC38 /* Colors.xcassets */,
 				4261C4E7288BF8320068BC38 /* Alert.swift */,
 				4261C4D22882B45D0068BC38 /* Colors.swift */,
+				4272910C28907EA60029262A /* Animations.swift */,
 			);
 			path = "TV Shows";
 			sourceTree = "<group>";
@@ -360,6 +363,7 @@
 				4261C50A288D94E00068BC38 /* WriteReviewViewController.swift in Sources */,
 				4261C4E6288BEF010068BC38 /* User.swift in Sources */,
 				4261C4DE28882ABB0068BC38 /* ApiManager.swift in Sources */,
+				4272910D28907EA60029262A /* Animations.swift in Sources */,
 				4261C4EC288BFE160068BC38 /* Shows.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

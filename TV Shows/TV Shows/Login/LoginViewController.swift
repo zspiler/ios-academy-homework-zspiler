@@ -8,6 +8,7 @@
 import UIKit
 import MBProgressHUD
 
+import KeychainAccess
 
 final class LoginViewController: UIViewController {
     
@@ -132,6 +133,7 @@ final class LoginViewController: UIViewController {
                     let headers = response.response?.headers.dictionary ?? [:]
                     self.handleSuccesfulLogin(for: userResponse.user, headers: headers)
                 case .failure(_):
+                    self.registerButton.pulsate()
                     self.displayErrorMessage(message: Constants.Error.createAccount)
                 }
             }
@@ -152,6 +154,7 @@ final class LoginViewController: UIViewController {
                     self.handleSuccesfulLogin(for: userResponse.user, headers: headers)
                 case .failure(_):
                     self.displayErrorMessage(message: Constants.Error.login)
+                    self.loginButton.pulsate()
                 }
             }
     }
@@ -159,17 +162,30 @@ final class LoginViewController: UIViewController {
     func pushToHomeView(with user: User, authInfo: AuthInfo) {
         let storyboard = UIStoryboard(name: Constants.Storyboards.home, bundle: nil)
         let homeViewController = storyboard.instantiateViewController(withIdentifier: Constants.ViewControllers.homeViewController) as! HomeViewController
-        
-        homeViewController.setUserData(user: user, authInfo: authInfo)
+        homeViewController.setAuthInfo(authInfo)
         navigationController?.pushViewController(homeViewController, animated: true)
     }
     
     func handleSuccesfulLogin(for user: User, headers: [String: String]) {
         guard let authInfo = try? AuthInfo(headers: headers) else {
             self.displayErrorMessage(message: Constants.Error.login)
+            self.loginButton.pulsate()
             return
+        }
+        if rememberMeCheckbox.isSelected {
+            self.updateKeychain(authInfo: authInfo)
         }
         self.pushToHomeView(with: user, authInfo: authInfo)
     }
     
+    func updateKeychain(authInfo: AuthInfo) {
+        if let encodedAuthInfo = try? JSONEncoder().encode(authInfo) {
+            do {
+                try Keychain().set(encodedAuthInfo, key: "authInfo")
+            }
+            catch {
+                self.displayErrorMessage(message: Constants.Error.login)
+            }
+        }
+    }
 }

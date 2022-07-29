@@ -58,7 +58,7 @@ class WriteReviewViewController: UIViewController {
                 case .success:
                     self.popViewController()
                 case .failure:
-                    Alert.displayErrorMessage(message: "Failed to create review.", from: self)
+                    self.displayErrorMessage(message: "Failed to create review.")
                 }
             }
     }

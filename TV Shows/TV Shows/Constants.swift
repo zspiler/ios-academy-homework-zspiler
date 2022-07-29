@@ -8,6 +8,10 @@
 import Foundation
 
 enum Constants {
+
+    enum Defaults: String {
+        case userData
+    }
     
     enum Networking {
         static let apiBaseUrl = "https://tv-shows.infinum.academy/"
@@ -15,8 +19,7 @@ enum Constants {
     
     enum Strings {
         static let email = "Email"
-        static let password = "Password"
-        
+        static let password = "Password"   
     }
     
     enum Error {
@@ -27,6 +30,7 @@ enum Constants {
     
     enum Storyboards {
         static let home = "Home"
+        static let login = "Login"
     }
     
     enum ViewControllers {

@@ -61,7 +61,7 @@ enum ReviewsRouter: URLRequestConvertible {
     }
     
     func asURLRequest() throws -> URLRequest {
-        let url = try URL(string: Constants.apiBaseUrl.asURL()
+        let url = try URL(string: Constants.Networking.apiBaseUrl.asURL()
                                                   .appendingPathComponent(path)
                                                   .absoluteString.removingPercentEncoding!)
         var request = URLRequest.init(url: url!)
