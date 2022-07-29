@@ -57,6 +57,10 @@ class ProfileDetailsViewController: UIViewController {
     
     // MARK: - Helpers
     
+    func setAuthInfo(_ authInfo: AuthInfo?) {
+        self.authInfo = authInfo
+    }
+    
     func fetchUserData() {
         MBProgressHUD.showAdded(to: self.view, animated: true)
         guard let authInfo = authInfo else { return }

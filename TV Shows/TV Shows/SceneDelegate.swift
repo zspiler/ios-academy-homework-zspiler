@@ -20,7 +20,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
             if let authInfo = try? JSONDecoder().decode(AuthInfo.self, from: savedAuthInfo) {
                 let storyboard = UIStoryboard(name: Constants.Storyboards.home, bundle: nil)
                 let homeViewController = storyboard.instantiateViewController(withIdentifier: Constants.ViewControllers.home) as! HomeViewController
-                homeViewController.setAuthInfo(authInfo: authInfo)
+                homeViewController.setAuthInfo(authInfo)
                 navigationController.viewControllers = [homeViewController]
             } else {
                 let storyboard = UIStoryboard(name: Constants.Storyboards.login, bundle: nil)

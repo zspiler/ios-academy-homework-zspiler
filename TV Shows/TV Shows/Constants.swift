@@ -36,6 +36,7 @@ enum Constants {
         static let login = "Login"
         static let writeReview = "WriteReview"
         static let profileDetails = "ProfileDetails"
+        static let showDetails = "ShowDetails"
     }
     
     enum ViewControllers {
@@ -43,10 +44,13 @@ enum Constants {
         static let writeReview = "WriteReviewViewController"
         static let profileDetails = "ProfileDetailsViewController"
         static let login = "LoginViewController"
+        static let showDetails = "ShowDetailsViewController"
     }
     
     enum Notifications {
         static let logout = Notification.Name(rawValue: "Logout")
     }
+    
+    
     
 }

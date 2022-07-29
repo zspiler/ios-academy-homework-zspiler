@@ -16,7 +16,6 @@ class HomeViewController: UIViewController {
     
     // MARK: - Properties
     
-    private var user: User?
     private var authInfo: AuthInfo?
     private var shows: [Show] = []
     private var page = 1
@@ -39,7 +38,7 @@ class HomeViewController: UIViewController {
     
     // MARK: - Helpers
     
-    func setAuthInfo(authInfo: AuthInfo) {
+    func setAuthInfo(_ authInfo: AuthInfo) {
         self.authInfo = authInfo
     }
     
@@ -96,7 +95,7 @@ class HomeViewController: UIViewController {
     func presentProfileScreen() {
         let storyboard = UIStoryboard(name: Constants.Storyboards.profileDetails, bundle: nil)
         let profileDetailsViewController = storyboard.instantiateViewController(withIdentifier: Constants.ViewControllers.profileDetails) as! ProfileDetailsViewController
-        profileDetailsViewController.setAuthenticationData(user: user, authInfo: authInfo)
+        profileDetailsViewController.setAuthInfo(authInfo)
         let navigationController = UINavigationController(rootViewController: profileDetailsViewController)
         present(navigationController, animated: true)
     }
@@ -124,10 +123,10 @@ extension HomeViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
         
-        let storyboard = UIStoryboard(name: "ShowDetails", bundle: nil)
-        let showDetailsViewController = storyboard.instantiateViewController(withIdentifier: "ShowDetailsViewController") as! ShowDetailsViewController
-        showDetailsViewController.authInfo = authInfo
-        showDetailsViewController.show = shows[indexPath.row]
+        let storyboard = UIStoryboard(name: Constants.Storyboards.showDetails, bundle: nil)
+        let showDetailsViewController = storyboard.instantiateViewController(withIdentifier: Constants.ViewControllers.showDetails) as! ShowDetailsViewController
+        showDetailsViewController.setAuthInfo(authInfo)
+        showDetailsViewController.setShow(shows[indexPath.row])
         navigationController?.pushViewController(showDetailsViewController, animated: true)
     }
     

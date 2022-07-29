@@ -163,7 +163,7 @@ final class LoginViewController: UIViewController {
         let storyboard = UIStoryboard(name: Constants.Storyboards.home, bundle: nil)
         let homeViewController = storyboard.instantiateViewController(withIdentifier: Constants.ViewControllers.home) as! HomeViewController
 
-        homeViewController.setAuthInfo(authInfo: authInfo)
+        homeViewController.setAuthInfo(authInfo)
         navigationController?.pushViewController(homeViewController, animated: true)
     }
     
