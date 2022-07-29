@@ -16,15 +16,15 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         // Create navigation controller in which we will embed our starting view controller
         let navigationController = UINavigationController()
         
-        if let savedUserData = UserDefaults.standard.object(forKey: Constants.Defaults.userData.rawValue) as? Data {
-            if let userData = try? JSONDecoder().decode(UserData.self, from: savedUserData) {
+        if let savedAuthInfo = UserDefaults.standard.object(forKey: Constants.Defaults.authInfo.rawValue) as? Data {
+            if let authInfo = try? JSONDecoder().decode(AuthInfo.self, from: savedAuthInfo) {
                 let storyboard = UIStoryboard(name: Constants.Storyboards.home, bundle: nil)
-                let homeViewController = storyboard.instantiateViewController(withIdentifier: "HomeViewController") as! HomeViewController
-                homeViewController.setUserData(user: userData.user, authInfo: userData.authInfo)
+                let homeViewController = storyboard.instantiateViewController(withIdentifier: Constants.ViewControllers.home) as! HomeViewController
+                homeViewController.setAuthInfo(authInfo: authInfo)
                 navigationController.viewControllers = [homeViewController]
             } else {
                 let storyboard = UIStoryboard(name: Constants.Storyboards.login, bundle: nil)
-                let loginViewController = storyboard.instantiateViewController(withIdentifier: "LoginViewController") as! LoginViewController
+                let loginViewController = storyboard.instantiateViewController(withIdentifier: Constants.ViewControllers.login) as! LoginViewController
                 navigationController.viewControllers = [loginViewController]
             }
             window?.rootViewController = navigationController

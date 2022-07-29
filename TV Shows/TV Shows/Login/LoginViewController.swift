@@ -27,6 +27,7 @@ final class LoginViewController: UIViewController {
         setUpUI()
     }
     
+    
     // MARK: - Actions
     
     @IBAction func tapShowPasswordButton() {
@@ -160,9 +161,9 @@ final class LoginViewController: UIViewController {
     
     func pushToHomeView(with user: User, authInfo: AuthInfo) {
         let storyboard = UIStoryboard(name: Constants.Storyboards.home, bundle: nil)
-        let homeViewController = storyboard.instantiateViewController(withIdentifier: Constants.ViewControllers.homeViewController) as! HomeViewController
+        let homeViewController = storyboard.instantiateViewController(withIdentifier: Constants.ViewControllers.home) as! HomeViewController
 
-        homeViewController.setUserData(user: user, authInfo: authInfo)
+        homeViewController.setAuthInfo(authInfo: authInfo)
         navigationController?.pushViewController(homeViewController, animated: true)
     }
     
@@ -173,15 +174,15 @@ final class LoginViewController: UIViewController {
             return
         }
         if rememberMeCheckbox.isSelected {
-            self.updateUserDefaults(authInfo: authInfo, user: user)
+            self.updateUserDefaults(with: authInfo)
         }
         self.pushToHomeView(with: user, authInfo: authInfo)
     }
     
-    func updateUserDefaults(authInfo: AuthInfo, user: User) {
-        let userData = UserData(user: user, authInfo: authInfo)
-        if let encodedUserData = try? JSONEncoder().encode(userData) {
-            UserDefaults.standard.set(encodedUserData, forKey: Constants.Defaults.userData.rawValue)
+    func updateUserDefaults(with authInfo: AuthInfo) {
+        if let encodedUserData = try? JSONEncoder().encode(authInfo) {
+            UserDefaults.standard.set(encodedUserData, forKey: Constants.Defaults.authInfo.rawValue)
         }
     }
+   
 }

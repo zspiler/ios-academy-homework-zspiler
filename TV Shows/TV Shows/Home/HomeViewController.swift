@@ -21,23 +21,28 @@ class HomeViewController: UIViewController {
     private var shows: [Show] = []
     private var page = 1
     private var numberOfPages: Int?
-    
+    private var notificationToken: NSObjectProtocol?
+
     // MARK: - Lifecycle methods
     
     override func viewDidLoad() {
         super.viewDidLoad()
         setUpTableViewAndNavController()
         fetchShows()
+        setUpNavigationBar()
+        addNotificationObserver()
+    }
+    
+    deinit {
+        NotificationCenter.default.removeObserver(notificationToken!)
     }
     
     // MARK: - Helpers
     
-    func setUserData(user: User?, authInfo: AuthInfo?) {
-        self.user = user
+    func setAuthInfo(authInfo: AuthInfo) {
         self.authInfo = authInfo
     }
     
-
     func setUpTableViewAndNavController() {
         navigationController?.setViewControllers([self], animated: true)
         tableView.dataSource = self
@@ -71,6 +76,29 @@ class HomeViewController: UIViewController {
         self.numberOfPages = self.numberOfPages ?? showsResponse.meta.pagination.pages
         self.page = showsResponse.meta.pagination.page + 1
         self.tableView.reloadData()
+    }
+
+    func setUpNavigationBar() {
+        let profileDetailsItem = UIBarButtonItem(
+                image: UIImage(named: "ic-profile"),
+                style: .plain,
+                target: self,
+                action: #selector(tapProfileButton)
+              )
+        profileDetailsItem.tintColor = UIColor.Button.primary
+        navigationItem.rightBarButtonItem = profileDetailsItem
+    }
+    
+    @objc func tapProfileButton() {
+        presentProfileScreen()
+    }
+    
+    func presentProfileScreen() {
+        let storyboard = UIStoryboard(name: Constants.Storyboards.profileDetails, bundle: nil)
+        let profileDetailsViewController = storyboard.instantiateViewController(withIdentifier: Constants.ViewControllers.profileDetails) as! ProfileDetailsViewController
+        profileDetailsViewController.setAuthenticationData(user: user, authInfo: authInfo)
+        let navigationController = UINavigationController(rootViewController: profileDetailsViewController)
+        present(navigationController, animated: true)
     }
     
 }
@@ -108,6 +136,25 @@ extension HomeViewController: UITableViewDelegate {
         if indexPath.row == shows.count - 1 && page - 1 < numberOfPages {
             fetchShows()
         }
+    }
+    
+    func addNotificationObserver() {
+        notificationToken = NotificationCenter
+            .default
+            .addObserver(
+                forName: Constants.Notifications.logout,
+                object: nil,
+                queue: nil,
+                using: { _ in
+                    self.resetNavigationStack()
+                }
+            )
+    }
+    
+    func resetNavigationStack() {
+        let storyboard = UIStoryboard(name: Constants.Storyboards.login, bundle: nil)
+        let loginViewController = storyboard.instantiateViewController(withIdentifier: Constants.ViewControllers.login) as! LoginViewController
+        self.navigationController?.setViewControllers([loginViewController], animated: true)
     }
     
 }

@@ -65,7 +65,7 @@ class ShowDetailsViewController: UIViewController {
                 case .success(let reviewsResponse):
                     self.updateReviewsTableView(using: reviewsResponse)
                 case .failure:
-                    self.displayErrorMessage(message: "Failed to fetch reviews.")
+                    self.displayErrorMessage(message: Constants.Error.fetchReviews)
                 }
             }
     }
@@ -78,8 +78,8 @@ class ShowDetailsViewController: UIViewController {
     }
     
     func presentWriteReviewScreen() {
-        let storyboard = UIStoryboard(name: "WriteReview", bundle: nil)
-        let writeReviewController = storyboard.instantiateViewController(withIdentifier: "WriteReviewViewController") as! WriteReviewViewController
+        let storyboard = UIStoryboard(name: Constants.Storyboards.writeReview, bundle: nil)
+        let writeReviewController = storyboard.instantiateViewController(withIdentifier: Constants.ViewControllers.writeReview) as! WriteReviewViewController
         writeReviewController.setAuthenticationAndShowData(showId: show?.id, authInfo: authInfo)
 
         let navigationController = UINavigationController(rootViewController: writeReviewController)
