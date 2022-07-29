@@ -11,11 +11,6 @@ struct UserResponse: Decodable {
     let user: User
 }
 
-struct UserData: Codable {
-    let user: User
-    let authInfo: AuthInfo
-}
-
 struct User: Codable {
     let id: String
     let email: String
@@ -27,7 +22,6 @@ struct User: Codable {
         case imageUrl = "image_url"
     }
 }
-
 
 struct AuthInfo: Codable {
 

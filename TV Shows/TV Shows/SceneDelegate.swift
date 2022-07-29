@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import KeychainAccess
 
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
@@ -16,19 +17,19 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         // Create navigation controller in which we will embed our starting view controller
         let navigationController = UINavigationController()
         
-        if let savedUserData = UserDefaults.standard.object(forKey: Constants.Defaults.userData.rawValue) as? Data {
-            if let userData = try? JSONDecoder().decode(UserData.self, from: savedUserData) {
-                let storyboard = UIStoryboard(name: Constants.Storyboards.home, bundle: nil)
-                let homeViewController = storyboard.instantiateViewController(withIdentifier: "HomeViewController") as! HomeViewController
-                homeViewController.setUserData(user: userData.user, authInfo: userData.authInfo)
-                navigationController.viewControllers = [homeViewController]
-            } else {
-                let storyboard = UIStoryboard(name: Constants.Storyboards.login, bundle: nil)
-                let loginViewController = storyboard.instantiateViewController(withIdentifier: "LoginViewController") as! LoginViewController
-                navigationController.viewControllers = [loginViewController]
-            }
-            window?.rootViewController = navigationController
+        guard let savedAuthInfo = try? Keychain().getData("authInfo") else { return }
+    
+        if let authInfo = try? JSONDecoder().decode(AuthInfo.self, from: savedAuthInfo) {
+            let storyboard = UIStoryboard(name: Constants.Storyboards.home, bundle: nil)
+            let homeViewController = storyboard.instantiateViewController(withIdentifier: "HomeViewController") as! HomeViewController
+            homeViewController.setAuthInfo(authInfo)
+            navigationController.viewControllers = [homeViewController]
+        } else {
+            let storyboard = UIStoryboard(name: Constants.Storyboards.login, bundle: nil)
+            let loginViewController = storyboard.instantiateViewController(withIdentifier: "LoginViewController") as! LoginViewController
+            navigationController.viewControllers = [loginViewController]
         }
+        window?.rootViewController = navigationController
     }
 
     func sceneDidDisconnect(_ scene: UIScene) {

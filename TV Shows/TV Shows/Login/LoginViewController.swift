@@ -8,6 +8,7 @@
 import UIKit
 import MBProgressHUD
 
+import KeychainAccess
 
 final class LoginViewController: UIViewController {
     
@@ -161,8 +162,7 @@ final class LoginViewController: UIViewController {
     func pushToHomeView(with user: User, authInfo: AuthInfo) {
         let storyboard = UIStoryboard(name: Constants.Storyboards.home, bundle: nil)
         let homeViewController = storyboard.instantiateViewController(withIdentifier: Constants.ViewControllers.homeViewController) as! HomeViewController
-
-        homeViewController.setUserData(user: user, authInfo: authInfo)
+        homeViewController.setAuthInfo(authInfo)
         navigationController?.pushViewController(homeViewController, animated: true)
     }
     
@@ -173,15 +173,19 @@ final class LoginViewController: UIViewController {
             return
         }
         if rememberMeCheckbox.isSelected {
-            self.updateUserDefaults(authInfo: authInfo, user: user)
+            self.updateKeychain(authInfo: authInfo)
         }
         self.pushToHomeView(with: user, authInfo: authInfo)
     }
     
-    func updateUserDefaults(authInfo: AuthInfo, user: User) {
-        let userData = UserData(user: user, authInfo: authInfo)
-        if let encodedUserData = try? JSONEncoder().encode(userData) {
-            UserDefaults.standard.set(encodedUserData, forKey: Constants.Defaults.userData.rawValue)
+    func updateKeychain(authInfo: AuthInfo) {
+        if let encodedAuthInfo = try? JSONEncoder().encode(authInfo) {
+            do {
+                try Keychain().set(encodedAuthInfo, key: "authInfo")
+            }
+            catch {
+                self.displayErrorMessage(message: Constants.Error.login)
+            }
         }
     }
 }
