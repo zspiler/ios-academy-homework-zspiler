@@ -98,23 +98,22 @@ class ProfileDetailsViewController: UIViewController {
         )
       
         MBProgressHUD.showAdded(to: self.view, animated: true)
-        AF
-            .upload(
-                multipartFormData: requestData,
-                to: "https://tv-shows.infinum.academy/users",
-                method: .put,
-                headers: HTTPHeaders(authInfo.headers)
-            )
-            .validate()
-            .responseDecodable(of: UserResponse.self) { response in
-                MBProgressHUD.hide(for: self.view, animated: true)
-                switch response.result {
-                case .success(let userResponse):
-                    self.setProfilePhotoSource(to: userResponse.user.imageUrl)
-                case .failure:
-                    self.displayErrorMessage(message: Constants.Error.profilePhotoUpload)
-                }
+        ApiManager.session.upload(
+            multipartFormData: requestData,
+            to: "https://tv-shows.infinum.academy/users",
+            method: .put,
+            headers: HTTPHeaders(authInfo.headers)
+        )
+        .validate()
+        .responseDecodable(of: UserResponse.self) { response in
+            MBProgressHUD.hide(for: self.view, animated: true)
+            switch response.result {
+            case .success(let userResponse):
+                self.setProfilePhotoSource(to: userResponse.user.imageUrl)
+            case .failure:
+                self.displayErrorMessage(message: Constants.Error.profilePhotoUpload)
             }
+        }
     }
     
     func setAuthenticationData(user: User?, authInfo: AuthInfo?) {
@@ -150,12 +149,12 @@ class ProfileDetailsViewController: UIViewController {
         self.navigationItem.leftBarButtonItem = UIBarButtonItem(customView: closeButton)
     }
     
-    func popViewController() {
+    func dismissViewController() {
         dismiss(animated: true, completion: nil)
     }
     
     @objc func tapBackButton() {
-        popViewController()
+        dismissViewController()
     }
    
 }

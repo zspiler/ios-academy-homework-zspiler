@@ -22,7 +22,7 @@
 		</dict>
 	</dict>
 	<key>NSPhotoLibraryAddUsageDescription</key>
-	<string>The application would like to open your gallery.</string>
+	<string>Photo library access needed for profile picture upload. </string>
 	<key>UIStatusBarStyle</key>
 	<string>UIStatusBarStyleDefault</string>
 </dict>

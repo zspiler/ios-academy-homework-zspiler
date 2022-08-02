@@ -153,7 +153,7 @@ extension HomeViewController: UITableViewDelegate {
     func resetNavigationStack() {
         let storyboard = UIStoryboard(name: Constants.Storyboards.login, bundle: nil)
         let loginViewController = storyboard.instantiateViewController(withIdentifier: Constants.ViewControllers.login) as! LoginViewController
-        self.navigationController?.setViewControllers([loginViewController], animated: true)
+        navigationController?.setViewControllers([loginViewController], animated: true)
     }
     
 }
