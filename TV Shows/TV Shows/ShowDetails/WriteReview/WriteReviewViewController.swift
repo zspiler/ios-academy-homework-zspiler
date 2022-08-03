@@ -82,13 +82,11 @@ class WriteReviewViewController: UIViewController {
     
     func setUpNavigationBar() {
         navigationItem.title = "Write a Review"
-        navigationController!.navigationBar.backgroundColor = UIColor.NavigationBar.background
         addCloseButtonToNavigationBar()
     }
     
     func addCloseButtonToNavigationBar() {
         let closeButton = UIButton()
-        closeButton.tintColor = .white
         closeButton.setTitle("Close", for: .normal)
         closeButton.setTitleColor(UIColor.Button.primary, for: .normal)
         closeButton.addTarget(self, action: #selector(tapBackButton), for: .touchUpInside)

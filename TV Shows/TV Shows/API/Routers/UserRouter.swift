@@ -1,50 +1,57 @@
 //
-//  ShowsRouter.swift
+//  UserRouter.swift
 //  TV Shows
 //
-//  Created by Infinum on 23.07.2022..
+//  Created by Infinum on 28.07.2022..
 //
 
 import Alamofire
 
-enum ShowsRouter: URLRequestConvertible {
+enum UserRouter: URLRequestConvertible {
     
-    case getAll(authInfo: AuthInfo, pageNumber: Int)
+    case getUser(authInfo: AuthInfo)
+    case updateUser(authInfo: AuthInfo)
         
     var path: String {
-        let endpoint = "shows"
         switch self {
-        case .getAll:
-            return "\(endpoint)"
+        case .getUser:
+            return "users/me"
+        case .updateUser:
+            return "users"
         }
     }
     
     var method: HTTPMethod {
         switch self {
-        case .getAll:
+        case .getUser:
             return .get
+        case .updateUser:
+            return .put
         }
     }
     
     var parameters: Parameters? {
-        let pageSize = 30
         switch self {
-        case .getAll(_, let pageNumber):
-            return ["page": String(pageNumber), "items": String(pageSize)]
+        case .getUser, .updateUser:
+            return nil
         }
     }
     
     var headers: HTTPHeaders {
         switch self {
-        case .getAll(let authInfo, _):
+        case .getUser(let authInfo):
             return HTTPHeaders(authInfo.headers)
+        case .updateUser:
+            return [:]
         }
     }
     
     var encodingType: ParameterEncoding {
         switch self {
-        case .getAll:
-            return URLEncoding.default
+        case .getUser:
+            return JSONEncoding.default
+        case .updateUser:
+            return JSONEncoding.default
         }
     }
     
@@ -55,7 +62,7 @@ enum ShowsRouter: URLRequestConvertible {
         var request = URLRequest(url: url!)
         request.httpMethod = method.rawValue
         request.headers = headers
-        return try encodingType.encode(request,with: parameters)
+        return try encodingType.encode(request, with: parameters)
     }
-
+ 
 }

@@ -28,6 +28,7 @@ final class LoginViewController: UIViewController {
         setUpUI()
     }
     
+    
     // MARK: - Actions
     
     @IBAction func tapShowPasswordButton() {
@@ -161,7 +162,8 @@ final class LoginViewController: UIViewController {
     
     func pushToHomeView(with user: User, authInfo: AuthInfo) {
         let storyboard = UIStoryboard(name: Constants.Storyboards.home, bundle: nil)
-        let homeViewController = storyboard.instantiateViewController(withIdentifier: Constants.ViewControllers.homeViewController) as! HomeViewController
+        let homeViewController = storyboard.instantiateViewController(withIdentifier: Constants.ViewControllers.home) as! HomeViewController
+
         homeViewController.setAuthInfo(authInfo)
         navigationController?.pushViewController(homeViewController, animated: true)
     }
@@ -173,12 +175,12 @@ final class LoginViewController: UIViewController {
             return
         }
         if rememberMeCheckbox.isSelected {
-            self.updateKeychain(authInfo: authInfo)
+            self.updateKeychain(authInfo)
         }
         self.pushToHomeView(with: user, authInfo: authInfo)
     }
-    
-    func updateKeychain(authInfo: AuthInfo) {
+
+    func updateKeychain(_ authInfo: AuthInfo) {
         if let encodedAuthInfo = try? JSONEncoder().encode(authInfo) {
             do {
                 try Keychain().set(encodedAuthInfo, key: "authInfo")
@@ -188,4 +190,5 @@ final class LoginViewController: UIViewController {
             }
         }
     }
+   
 }

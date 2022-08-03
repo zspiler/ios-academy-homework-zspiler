@@ -64,9 +64,8 @@ enum ReviewsRouter: URLRequestConvertible {
         let url = try URL(string: Constants.Networking.apiBaseUrl.asURL()
                                                   .appendingPathComponent(path)
                                                   .absoluteString.removingPercentEncoding!)
-        var request = URLRequest.init(url: url!)
+        var request = URLRequest(url: url!)
         request.httpMethod = method.rawValue
-        request.timeoutInterval = TimeInterval(10*1000)
         request.headers = headers
         return try encodingType.encode(request, with: parameters)
     }
